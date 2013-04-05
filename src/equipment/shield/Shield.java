@@ -23,10 +23,4 @@ public class Shield extends Implement {
   public int getArmorClassModifer() {
     return (int) (type.acValue * size.sizeModifier);
   }
-
-  @Override
-  public ImplementType getImplementType() {
-    return ImplementType.SHIELD;
-  }
-
 }

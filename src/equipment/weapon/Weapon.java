@@ -2,36 +2,19 @@ package equipment.weapon;
 
 import mechanics.Attribute;
 import mechanics.Damage;
+import mechanics.defenses.DefenseType;
 import equipment.Implement;
 
-public class Weapon extends Implement {
-
-  private WeaponType type;
+public abstract class Weapon extends Implement {
   
-  public Weapon(WeaponType type) {
-    this.type = type;
-  }
+  public abstract double getWeight();
   
-  @Override
-  public double getWeight() {
-    return type.weight;
-  }
+  public abstract Damage getDamage();
   
-  public Damage getDamage() {
-    return type.damage;
-  }
+  public abstract int getAttackRollModifier();
   
-  public int getAttackRollModifier() {
-    return type.attackRollModifer;
-  }
+  public abstract Attribute getAttributeUsed();
   
-  public Attribute getAttributeUsed() {
-    return type.attribute;
-  }
-  
-  @Override
-  public ImplementType getImplementType() {
-    return ImplementType.WEAPON;
-  }
+  public abstract DefenseType getDefenseType();
 
 }

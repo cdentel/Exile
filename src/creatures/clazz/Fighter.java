@@ -1,6 +1,6 @@
 package creatures.clazz;
 
-public class Fighter implements Clazz {
+public class Fighter extends Clazz {
 
   @Override
   public int getHealingSurges() {
@@ -10,6 +10,11 @@ public class Fighter implements Clazz {
   @Override
   public int getBaseHitPointsForLevel(int level) {
     return 15 + 6 * level;
+  }
+  
+  @Override
+  public int getFortitudeBonus() {
+    return 2;
   }
 
 }

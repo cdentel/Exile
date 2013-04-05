@@ -11,11 +11,11 @@ import equipment.wearable.Torso;
 
 public class Equipment {
   
-  private Optional<Torso> torso;
-  private Optional<Handwear> handwear;
-  private Optional<Footwear> footwear;
-  private Optional<Shield> leftHand;
-  private Optional<Weapon> rightHand;
+  private Optional<Torso> torso = Optional.absent();
+  private Optional<Handwear> handwear = Optional.absent();
+  private Optional<Footwear> footwear = Optional.absent();
+  private Optional<Shield> leftHand = Optional.absent();
+  private Optional<Weapon> rightHand = Optional.absent();
   
   public Equipment() {/*Naked*/}
   

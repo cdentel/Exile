@@ -1,14 +1,14 @@
 package creatures;
 import static mechanics.Attribute.CONSTITUTION;
-import static mechanics.Attribute.DEXTERITY;
-import static mechanics.Attribute.INTELLIGENCE;
 import mechanics.Attributes;
+import mechanics.EvaluatedDamage;
+import mechanics.Health;
+import mechanics.defenses.Defenses;
 import attack.Attack;
 import attack.MeleeBasicAttack;
 import creatures.clazz.Clazz;
 import creatures.race.Race;
 import equipment.Equipment;
-import equipment.wearable.WearableMaterialType.ArmorWeight;
 
 
 public abstract class Creature {
@@ -17,10 +17,6 @@ public abstract class Creature {
   
   protected int xp;
   
-  protected int currentHp;
-  
-  protected int currentHealingSurges;
-
   protected Attributes attributes;
   
   protected Equipment equipment;
@@ -29,48 +25,20 @@ public abstract class Creature {
   
   protected Clazz clazz;
   
-  public Creature(Attributes attributes, Equipment equipment) {
+  protected Health health;
+  
+  public abstract String getName();
+  
+  public Creature(Attributes attributes, Equipment equipment, Clazz clazz) {
     this.attributes = attributes;
     this.equipment = equipment;
-    currentHp = getMaxHp();
-    currentHealingSurges = getMaxHealingSurges();
+    this.clazz = clazz;
     level = 1;
+    health = new Health(this);
   }
   
-  public int getAC() {
-    return 
-          // Base
-          10 
-          // AC of equipment
-        + equipment.getAmorClassModifier()
-          // 1/2 your level
-        + level/2 
-          // Intelligence or dex modifier if not wearing armor or armor is light
-        + ((!equipment.getTorso().isPresent() || 
-            equipment.getTorso().get().getMaterialType().armorWeight.equals(ArmorWeight.LIGHT)) 
-          ? Math.max(attributes.getModifier(DEXTERITY), attributes.getModifier(INTELLIGENCE))
-          : 0);
-  }
-  
-  public int getMaxHp() {
-    return
-          // Base + level
-          clazz.getBaseHitPointsForLevel(level)
-        + attributes.getModifier(CONSTITUTION);
-  }
-  
-  public int getCurrentHp() {
-    return currentHp;
-  }
-  
-  public int getMaxHealingSurges() {
-    return 
-          clazz.getHealingSurges()
-        + attributes.getModifier(CONSTITUTION);
-  }
-  
-  public int getCurrentHealingSurges() {
-    return currentHealingSurges;
+  public Defenses defenses() {
+    return Defenses.of(this);
   }
   
   public Attack attack(Creature opponent) {
@@ -79,5 +47,30 @@ public abstract class Creature {
     //} else {
       
     //}
+  }
+  
+  public void takeDamage(EvaluatedDamage d) {
+    System.out.printf("%s takes %d damage.\n", getName(), d.getBasicDamage());
+    health.takeDamage(d);
+  }
+  
+  public Health health() {
+    return health;
+  }
+  
+  public Equipment equipment() {
+    return equipment;
+  }
+  
+  public int getLevel() {
+    return level;
+  }
+  
+  public Clazz getClazz() {
+    return clazz;
+  }
+  
+  public Attributes attributes() {
+    return attributes;
   }
 }

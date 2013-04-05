@@ -77,5 +77,10 @@ public class Attributes {
     return getAttribute(WISDOM);
   }
   
+  public String toString() {
+    return attributes.toString();
+  }
+  
+  
 
 }
