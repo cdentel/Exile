@@ -1,13 +1,12 @@
 package equipment.shield;
 
-public enum ShieldSize {
-  SMALL(1),
-  MEDIUM(1.5),
-  LARGE(2);
+public enum ShieldType {
+  LIGHT(1),
+  HEAVY(1.5);
   
   public final double sizeModifier;
   
-  private ShieldSize(double sizeModifer) {
+  private ShieldType(double sizeModifer) {
     this.sizeModifier = sizeModifer;
   }
 }

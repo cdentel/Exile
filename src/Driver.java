@@ -6,7 +6,7 @@ import creatures.clazz.Fighter;
 import equipment.Equipment;
 import equipment.shield.Shield;
 import equipment.shield.ShieldMaterialType;
-import equipment.shield.ShieldSize;
+import equipment.shield.ShieldType;
 import equipment.weapon.Dagger;
 import equipment.weapon.Sword;
 
@@ -35,7 +35,7 @@ public class Driver {
   private static Hero getHero() {
     Attributes a = new Attributes(10, 16, 14, 12, 16, 12);
     Equipment e = new Equipment();
-    e.setLeftHand(new Shield(ShieldMaterialType.WOOD, ShieldSize.MEDIUM));
+    e.setLeftHand(new Shield(ShieldMaterialType.WOOD, ShieldType.HEAVY));
     e.setRightHand(new Sword());
     return new Hero(a, e, new Fighter());
   }

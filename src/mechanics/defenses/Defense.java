@@ -1,7 +1,7 @@
 package mechanics.defenses;
 
 import creatures.Creature;
-import equipment.wearable.WearableMaterialType.ArmorWeight;
+import equipment.wearable.ArmorType.ArmorWeight;
 
 public class Defense {
   

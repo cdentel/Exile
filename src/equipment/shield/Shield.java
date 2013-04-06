@@ -5,9 +5,9 @@ import equipment.Implement;
 public class Shield extends Implement {
   
   private ShieldMaterialType type;
-  private ShieldSize size;
+  private ShieldType size;
   
-  public Shield(ShieldMaterialType type, ShieldSize size) {
+  public Shield(ShieldMaterialType type, ShieldType size) {
     this.type = type;
     this.size = size;
   }

@@ -16,7 +16,7 @@ public abstract class Wearable implements Item {
     return getMaterialType().weight * getWeightMultiplier();
   }
   
-  public abstract WearableMaterialType getMaterialType();
+  public abstract ArmorType getMaterialType();
   
   public abstract int getMaterialArmorClassMultiplier();
   

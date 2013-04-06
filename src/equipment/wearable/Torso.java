@@ -2,13 +2,13 @@ package equipment.wearable;
 
 public class Torso extends Wearable {
 
-  private WearableMaterialType materialType;
+  private ArmorType materialType;
   
-  public Torso(WearableMaterialType materialType) {
+  public Torso(ArmorType materialType) {
     this.materialType = materialType;
   }
   
-  public WearableMaterialType getMaterialType() {
+  public ArmorType getMaterialType() {
     return materialType;
   }
 

@@ -3,14 +3,14 @@ package equipment.wearable;
 
 public class Footwear extends Wearable {
   
-  private WearableMaterialType materialType;
+  private ArmorType materialType;
   
-  public Footwear(WearableMaterialType materialType) {
+  public Footwear(ArmorType materialType) {
     this.materialType = materialType;
   }
 
   @Override
-  public WearableMaterialType getMaterialType() {
+  public ArmorType getMaterialType() {
     return materialType;
   }
 

@@ -2,14 +2,14 @@ package equipment.wearable;
 
 public class Handwear extends Wearable {
   
-  private WearableMaterialType materialType;
+  private ArmorType materialType;
   
-  public Handwear(WearableMaterialType materialType) {
+  public Handwear(ArmorType materialType) {
     this.materialType = materialType;
   }
 
   @Override
-  public WearableMaterialType getMaterialType() {
+  public ArmorType getMaterialType() {
     return materialType;
   }
 
