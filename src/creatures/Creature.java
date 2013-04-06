@@ -1,5 +1,4 @@
 package creatures;
-import static mechanics.Attribute.CONSTITUTION;
 import mechanics.Attributes;
 import mechanics.EvaluatedDamage;
 import mechanics.Health;
@@ -12,9 +11,7 @@ import equipment.Equipment;
 
 
 public abstract class Creature {
-  
-  protected int level;
-  
+    
   protected int xp;
   
   protected Attributes attributes;
@@ -33,7 +30,6 @@ public abstract class Creature {
     this.attributes = attributes;
     this.equipment = equipment;
     this.clazz = clazz;
-    level = 1;
     health = new Health(this);
   }
   
@@ -63,7 +59,10 @@ public abstract class Creature {
   }
   
   public int getLevel() {
-    return level;
+    // 500*(level)(level -1) = xp
+    // level^2 + (-1)*level - xp/500 = 0;
+    // (1 + root(1 + xp/125)) / 2
+    return (int) (1 + Math.sqrt(1 + 1.0 * xp / 125))/2;
   }
   
   public Clazz getClazz() {

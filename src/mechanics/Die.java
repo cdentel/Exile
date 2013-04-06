@@ -2,8 +2,6 @@ package mechanics;
 
 import java.util.Random;
 
-import com.google.common.base.Preconditions;
-
 public enum Die implements Rollable {
 
   d4(4),
