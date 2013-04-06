@@ -1,6 +1,10 @@
 package creatures.clazz;
 
+import mechanics.defenses.DefenseModifier;
+
 public abstract class Clazz {
+  
+  public abstract DefenseModifier getDefenseModifier();
   
   public abstract int getHealingSurges();
   

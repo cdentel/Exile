@@ -2,7 +2,7 @@ package attack;
 
 import mechanics.Damage;
 import mechanics.Die;
-import mechanics.defenses.ArmorClass;
+import mechanics.defenses.Defense;
 import creatures.Creature;
 
 public abstract class Attack {
@@ -16,7 +16,8 @@ public abstract class Attack {
   
   public abstract int getAttackModifier();
   
-  public abstract ArmorClass getAC();
+  public abstract Defense getDefense();
+  
   
   public void execute() {
     int attackRoll = Die.d20.roll();
@@ -32,7 +33,7 @@ public abstract class Attack {
   }
   
   public boolean attackLandsWithRoll(int roll) {
-    return getAttackModifier() + roll > getAC().getScore();
+    return getAttackModifier() + roll > getDefense().getScore();
   }
   
   public abstract Damage getDamage();

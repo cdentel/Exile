@@ -1,7 +1,7 @@
 package attack;
 
 import mechanics.Damage;
-import mechanics.defenses.ArmorClass;
+import mechanics.defenses.Defense;
 import creatures.Creature;
 import equipment.weapon.Weapon;
 
@@ -24,13 +24,13 @@ public class MeleeBasicAttack extends Attack {
   }
 
   @Override
-  public ArmorClass getAC() {
-    return opponent.defenses().getArmorClass();
+  public Damage getDamage() {
+    return attackingWeapon.getDamage();
   }
 
   @Override
-  public Damage getDamage() {
-    return attackingWeapon.getDamage();
+  public Defense getDefense() {
+    return opponent.defenses().getDefense(attackingWeapon.getDefenseType());
   }
   
 

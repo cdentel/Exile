@@ -1,23 +1,46 @@
 package mechanics.defenses;
 
 import creatures.Creature;
+import equipment.wearable.WearableMaterialType.ArmorWeight;
 
-public abstract class Defense {
+public class Defense {
   
   protected Creature creature;
+  protected DefenseType type;
   
-  public Defense(Creature c) {
+  public Defense(Creature c, DefenseType type) {
     this.creature = c;
+    this.type = type;
   }
   
     
-  public abstract int getAbility();
+  public int getAbility() {
+    if (!type.equals(DefenseType.AC) || 
+        !creature.equipment().getTorso().isPresent() || 
+        creature.equipment().getTorso().get().getMaterialType().armorWeight.equals(ArmorWeight.LIGHT)) {
+      return Math.max(
+          creature.attributes().getModifier(type.first),
+          creature.attributes().getModifier(type.second));
+    } else {
+      return 0;
+    }
+  }
+  
+  public int getArmor() {
+    if(type.equals(DefenseType.AC)) {
+      return creature.equipment().getAmorClassModifier();
+    } else {
+      throw new UnsupportedOperationException("Only A Defense of type AC can have an armor modifier");
+    }
+  }
   
   public int getHalfLevel() {
     return creature.getLevel()/2;
   }
   
-  public abstract int getClassBonus();
+  public int getClassBonus() {
+    return creature.getClazz().getDefenseModifier().get(type);
+  }
   
   public int getScore() {
     return getBase() + getAbility() + getHalfLevel() + getClassBonus();
