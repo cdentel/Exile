@@ -10,6 +10,10 @@ public class Damage {
     this.dice = dice;
   }
   
+  public Damage(Dice dice) {
+    this(0, dice);
+  }
+  
   public EvaluatedDamage evaluate() {
     return EvaluatedDamage.basic(fixed + dice.roll());
   }

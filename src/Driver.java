@@ -5,10 +5,11 @@ import creatures.Hero;
 import creatures.clazz.Fighter;
 import equipment.Equipment;
 import equipment.shield.Shield;
-import equipment.shield.ShieldMaterialType;
 import equipment.shield.ShieldType;
 import equipment.weapon.Dagger;
-import equipment.weapon.Sword;
+import equipment.weapon.ShortSword;
+import equipment.wearable.ArmorType;
+import equipment.wearable.Torso;
 
 
 public class Driver {
@@ -34,17 +35,21 @@ public class Driver {
   
   private static Hero getHero() {
     Attributes a = new Attributes(10, 16, 14, 12, 16, 12);
-    Equipment e = new Equipment();
-    e.setLeftHand(new Shield(ShieldMaterialType.WOOD, ShieldType.HEAVY));
-    e.setRightHand(new Sword());
-    return new Hero(a, e, new Fighter());
+    Hero h =  new Hero(a, new Fighter());
+    Equipment e = h.equipment();
+    e.setTorso(new Torso(ArmorType.PLATE));
+    e.setLeftHand(new Shield(ShieldType.HEAVY));
+    e.setRightHand(new ShortSword());
+    return h;
   }
   
   private static Goblin getGoblin() {
     Attributes a = new Attributes(10, 16, 18, 12, 12, 12);
-    Equipment e = new Equipment();
+    Goblin g = new Goblin(a, new Fighter());
+    Equipment e = g.equipment();
     e.setRightHand(new Dagger());
-    return new Goblin(a, e, new Fighter());
+    return g;
+
   }
   
   private static void printStats(Creature c) {

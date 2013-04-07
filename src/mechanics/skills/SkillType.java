@@ -1,6 +1,7 @@
-package mechanics;
+package mechanics.skills;
 
 import static mechanics.Attribute.*;
+import mechanics.Attribute;
 
 public enum SkillType {
   

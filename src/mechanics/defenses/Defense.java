@@ -17,7 +17,7 @@ public class Defense {
   public int getAbility() {
     if (!type.equals(DefenseType.AC) || 
         !creature.equipment().getTorso().isPresent() || 
-        creature.equipment().getTorso().get().getMaterialType().armorWeight.equals(ArmorWeight.LIGHT)) {
+        creature.equipment().getTorso().get().getArmorType().armorWeight.equals(ArmorWeight.LIGHT)) {
       return Math.max(
           creature.attributes().getModifier(type.first),
           creature.attributes().getModifier(type.second));

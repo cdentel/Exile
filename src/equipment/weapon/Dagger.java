@@ -6,16 +6,20 @@ import mechanics.Damage;
 import mechanics.Dice;
 import mechanics.defenses.DefenseType;
 
+import com.google.common.collect.ImmutableSet;
+
+import equipment.WeaponType;
+
 public class Dagger extends Weapon {
 
   @Override
-  public double getWeight() {
-    return 2;
+  public int getWeight() {
+    return 1;
   }
 
   @Override
   public Damage getDamage() {
-    return new Damage(1, Dice.with(d4, d4));
+    return new Damage(Dice.with(d4));
   }
 
   @Override
@@ -31,6 +35,16 @@ public class Dagger extends Weapon {
   @Override
   public DefenseType getDefenseType() {
     return DefenseType.AC;
+  }
+
+  @Override
+  public WeaponType getWeaponType() {
+    return WeaponType.SIMPLE_MELEE;
+  }
+
+  @Override
+  public ImmutableSet<WeaponGroup> getWeaponGroup() {
+    return ImmutableSet.of(WeaponGroup.LIGHT_BLADE);
   }
 
 }

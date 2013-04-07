@@ -9,7 +9,7 @@ public class Handwear extends Wearable {
   }
 
   @Override
-  public ArmorType getMaterialType() {
+  public ArmorType getArmorType() {
     return materialType;
   }
 
@@ -24,8 +24,8 @@ public class Handwear extends Wearable {
   }
 
   @Override
-  public int getWeightMultiplier() {
-    return 3;
+  public double getWeightMultiplier() {
+    return .15;
   }
 
 }

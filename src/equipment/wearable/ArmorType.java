@@ -1,20 +1,23 @@
 package equipment.wearable;
 
 public enum ArmorType {
-  CLOTH(  0, 0, 1, ArmorWeight.LIGHT), 
-  LEATHER(1, 0, 1, ArmorWeight.LIGHT),
-  HIDE(   2, 1, 2, ArmorWeight.MEDIUM),
-  CHAIN(  3, 2, 4, ArmorWeight.HEAVY),
-  SCALE(  4, 3, 5, ArmorWeight.HEAVY);
+  CLOTH(  0,  0,  0, 4,  ArmorWeight.LIGHT), 
+  LEATHER(2,  0,  0, 15, ArmorWeight.LIGHT),
+  HIDE(   3, -1,  0, 25, ArmorWeight.MEDIUM),
+  CHAIN(  6, -1, -1, 40, ArmorWeight.HEAVY),
+  SCALE(  7,  0, -1, 45, ArmorWeight.HEAVY),
+  PLATE(  8, -2, -1, 50, ArmorWeight.HEAVY);
   
-  public final int acValue;
-  public final int movementModifier;
+  public final int armorBonus;
+  public final int check;
   public final int weight;
+  public final int speedModifier;
   public final ArmorWeight armorWeight;
   
-  private ArmorType(int acValue, int movementModifier, int weight, ArmorWeight armorWeight) {
-    this.acValue = acValue;
-    this.movementModifier = movementModifier;
+  private ArmorType(int armorBonus, int check, int speedModifier, int weight, ArmorWeight armorWeight) {
+    this.armorBonus = armorBonus;
+    this.check = check;
+    this.speedModifier = speedModifier;
     this.weight = weight;
     this.armorWeight = armorWeight;
     

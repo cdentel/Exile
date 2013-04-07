@@ -2,14 +2,14 @@ package equipment.wearable;
 
 public class Torso extends Wearable {
 
-  private ArmorType materialType;
+  private ArmorType armorType;
   
-  public Torso(ArmorType materialType) {
-    this.materialType = materialType;
+  public Torso(ArmorType armorType) {
+    this.armorType = armorType;
   }
-  
-  public ArmorType getMaterialType() {
-    return materialType;
+  @Override
+  public ArmorType getArmorType() {
+    return armorType;
   }
 
   @Override
@@ -23,8 +23,8 @@ public class Torso extends Wearable {
   }
 
   @Override
-  public int getWeightMultiplier() {
-    return 10;
+  public double getWeightMultiplier() {
+    return 1.0;
   }
   
 

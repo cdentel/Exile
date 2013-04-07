@@ -3,6 +3,7 @@ package creatures.clazz;
 import java.util.Set;
 
 import mechanics.defenses.DefenseModifier;
+import mechanics.skills.StartingSkills;
 import equipment.WeaponType;
 import equipment.shield.ShieldType;
 import equipment.wearable.ArmorType;
@@ -21,7 +22,7 @@ public abstract class Clazz {
   
   public abstract Set<WeaponType> getWeaponProficiencies();
   
-  
+  public abstract StartingSkills getStartingSkills();
   
   public int getAcBonus() {
     return 0;

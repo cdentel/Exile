@@ -4,23 +4,23 @@ import equipment.Implement;
 
 public class Shield extends Implement {
   
-  private ShieldMaterialType type;
   private ShieldType size;
   
-  public Shield(ShieldMaterialType type, ShieldType size) {
-    this.type = type;
+  public Shield(ShieldType size) {
     this.size = size;
   }
   
-  
+  public ShieldType getShieldType() {
+    return size;
+  }
   
   @Override
-  public double getWeight() {
-    return type.weight * size.sizeModifier;
+  public int getWeight() {
+    return size.weight;
   }
   
   @Override
   public int getArmorClassModifer() {
-    return (int) (type.acValue * size.sizeModifier);
+    return (size.armorBonus);
   }
 }

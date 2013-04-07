@@ -1,4 +1,6 @@
 package creatures;
+import java.util.Set;
+
 import mechanics.Attributes;
 import mechanics.EvaluatedDamage;
 import mechanics.Health;
@@ -8,6 +10,9 @@ import attack.MeleeBasicAttack;
 import creatures.clazz.Clazz;
 import creatures.race.Race;
 import equipment.Equipment;
+import equipment.WeaponType;
+import equipment.shield.ShieldType;
+import equipment.wearable.ArmorType;
 
 
 public abstract class Creature {
@@ -26,9 +31,9 @@ public abstract class Creature {
   
   public abstract String getName();
   
-  public Creature(Attributes attributes, Equipment equipment, Clazz clazz) {
+  public Creature(Attributes attributes, Clazz clazz) {
     this.attributes = attributes;
-    this.equipment = equipment;
+    this.equipment = new Equipment(this);
     this.clazz = clazz;
     health = new Health(this);
   }
@@ -71,5 +76,17 @@ public abstract class Creature {
   
   public Attributes attributes() {
     return attributes;
+  }
+  
+  public Set<WeaponType> getWeaponProficiencies() {
+    return getClazz().getWeaponProficiencies();
+  }
+  
+  public Set<ArmorType> getArmorProficiencies() {
+    return getClazz().getArmorProficiencies();
+  }
+  
+  public Set<ShieldType> getShieldProficiencies() {
+    return getClazz().getShieldProficiencies();
   }
 }

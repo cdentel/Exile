@@ -1,4 +1,4 @@
-package mechanics;
+package mechanics.skills;
 
 import creatures.Creature;
 

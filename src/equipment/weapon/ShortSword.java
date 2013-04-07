@@ -6,16 +6,20 @@ import mechanics.Damage;
 import mechanics.Dice;
 import mechanics.defenses.DefenseType;
 
-public class Sword extends Weapon {
+import com.google.common.collect.ImmutableSet;
+
+import equipment.WeaponType;
+
+public class ShortSword extends Weapon {
 
   @Override
-  public double getWeight() {
-    return 5;
+  public int getWeight() {
+    return 2;
   }
 
   @Override
   public Damage getDamage() {
-    return new Damage(2, Dice.with(d6));
+    return new Damage(Dice.with(d6));
   }
 
   @Override
@@ -31,6 +35,16 @@ public class Sword extends Weapon {
   @Override
   public DefenseType getDefenseType() {
     return DefenseType.AC;
+  }
+  
+  @Override
+  public WeaponType getWeaponType() {
+    return WeaponType.MILITARY_MELEE;
+  }
+  
+  @Override
+  public ImmutableSet<WeaponGroup> getWeaponGroup() {
+    return ImmutableSet.of(WeaponGroup.LIGHT_BLADE);
   }
 
 }

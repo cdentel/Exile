@@ -10,7 +10,7 @@ public class Footwear extends Wearable {
   }
 
   @Override
-  public ArmorType getMaterialType() {
+  public ArmorType getArmorType() {
     return materialType;
   }
 
@@ -25,8 +25,8 @@ public class Footwear extends Wearable {
   }
 
   @Override
-  public int getWeightMultiplier() {
-    return 5;
+  public double getWeightMultiplier() {
+    return .25;
   }
 
 }

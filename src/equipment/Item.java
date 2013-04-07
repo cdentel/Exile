@@ -2,5 +2,5 @@ package equipment;
 
 public interface Item {
 
-  public double getWeight();
+  public int getWeight();
 }

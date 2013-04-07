@@ -1,4 +1,4 @@
-package mechanics;
+package mechanics.skills;
 
 import java.util.Map;
 import java.util.TreeMap;
