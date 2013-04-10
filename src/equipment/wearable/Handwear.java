@@ -14,8 +14,8 @@ public class Handwear extends Wearable {
   }
 
   @Override
-  public int getMaterialArmorClassMultiplier() {
-    return 1;
+  public double getMaterialArmorClassMultiplier() {
+    return .15;
   }
 
   @Override

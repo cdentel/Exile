@@ -13,8 +13,8 @@ public class Torso extends Wearable {
   }
 
   @Override
-  public int getMaterialArmorClassMultiplier() {
-    return 3;
+  public double getMaterialArmorClassMultiplier() {
+    return 1.0;
   }
 
   @Override

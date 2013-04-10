@@ -43,7 +43,12 @@ public class Defense {
   }
   
   public int getScore() {
-    return getBase() + getAbility() + getHalfLevel() + getClassBonus();
+    int sum = getBase() + getAbility() + getHalfLevel() + getClassBonus();
+    if(type.equals(DefenseType.AC)) {
+      return sum + getArmor();
+    } else {
+      return sum;
+    }
   }
   
   public int getBase() {
@@ -57,12 +62,14 @@ public class Defense {
         " -- Base:      %d\n" +
         " -- 1/2 level: %d\n" +
         " -- Class:     %d\n" +
-        " -- Ability:   %d\n",
+        " -- Ability:   %d\n" +
+        " -- Armor:     %d\n",    
         getScore(),
         getBase(),
         getHalfLevel(),
         getClassBonus(),
-        getAbility());
+        getAbility(),
+        type.equals(DefenseType.AC) ? getArmor() : 0);
         
   }
 
