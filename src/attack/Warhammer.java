@@ -1,12 +1,13 @@
 package attack;
 
-import mechanics.Attribute;
 import mechanics.Damage;
-import mechanics.Dice;
-import mechanics.Die;
 import mechanics.defenses.DefenseType;
+import mechanics.dice.Dice;
+import mechanics.dice.Die;
 
 import com.google.common.collect.ImmutableSet;
+
+import creatures.components.AttributeType;
 
 import equipment.WeaponType;
 import equipment.weapon.Weapon;
@@ -30,8 +31,8 @@ public class Warhammer extends Weapon {
   }
 
   @Override
-  public Attribute getAttributeUsed() {
-    return Attribute.STRENGTH;
+  public AttributeType getAttributeUsed() {
+    return AttributeType.STRENGTH;
   }
 
   @Override

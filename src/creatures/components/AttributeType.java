@@ -1,6 +1,6 @@
-package mechanics;
+package creatures.components;
 
-public enum Attribute {
+public enum AttributeType {
   STRENGTH, 
   CONSTITUTION, 
   DEXTERITY, 

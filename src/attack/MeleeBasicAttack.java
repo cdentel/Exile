@@ -20,7 +20,7 @@ public class MeleeBasicAttack extends Attack {
           // Weapon Modifier
           attackingWeapon.getAttackRollModifier()
           // The relevant attribute modifier
-        + attacker.attributes().getModifier(attackingWeapon.getAttributeUsed());
+        + attacker.attributes().get(attackingWeapon.getAttributeUsed()).getModifier();
   }
 
   @Override

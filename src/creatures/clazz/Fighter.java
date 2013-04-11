@@ -17,10 +17,10 @@ import static mechanics.skills.SkillType.STREETWISE;
 
 import java.util.Set;
 
-import mechanics.defenses.DefenseModifier;
+import mechanics.Choice;
+import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
 import mechanics.skills.SkillType;
-import mechanics.skills.StartingSkills;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -36,18 +36,19 @@ public class Fighter extends Clazz {
   }
 
   @Override
-  public int getBaseHitPointsForLevel(int level) {
-    return 15 + 6 * level;
+  public int getBaseHitPoints() {
+    return 15;
   }
   
-  @Override
-  public int getFortitudeBonus() {
-    return 2;
+  @Override 
+  public int getHitPointsGainedPerLevel() {
+    return 6;
   }
+  
 
   @Override
-  public DefenseModifier getDefenseModifier() {
-    return DefenseModifier.of(DefenseType.FORTITUDE, 2);
+  public Modifier<DefenseType> getDefenseModifier() {
+    return Modifier.with(DefenseType.FORTITUDE, 2);
   }
 
   @Override
@@ -71,8 +72,15 @@ public class Fighter extends Clazz {
   }
 
   @Override
-  public StartingSkills getStartingSkills() {
-    return new StartingSkills(ImmutableSet.<SkillType>of(), 3, ImmutableSet.of(ATHLETICS, ENDURANCE, HEAL, INTIMIDATE, STREETWISE));
+  public Choice<SkillType> getCreationSkillChoices() {
+    return Choice.of(
+        3,
+        false,
+        ImmutableSet.of(ATHLETICS, ENDURANCE, HEAL, INTIMIDATE, STREETWISE));
   }
 
+  @Override
+  public ClazzType getClassType() {
+    return ClazzType.FIGHTER;
+  }
 }

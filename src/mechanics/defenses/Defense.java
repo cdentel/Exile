@@ -19,8 +19,8 @@ public class Defense {
         !creature.equipment().getTorso().isPresent() || 
         creature.equipment().getTorso().get().getArmorType().armorWeight.equals(ArmorWeight.LIGHT)) {
       return Math.max(
-          creature.attributes().getModifier(type.first),
-          creature.attributes().getModifier(type.second));
+          creature.attributes().get(type.first).getScore(),
+          creature.attributes().get(type.second).getScore());
     } else {
       return 0;
     }
@@ -42,8 +42,12 @@ public class Defense {
     return creature.getClazz().getDefenseModifier().get(type);
   }
   
+  public int getRaceBonus() {
+    return creature.getRace().getDefenseModifier().get(type);
+  }
+  
   public int getScore() {
-    int sum = getBase() + getAbility() + getHalfLevel() + getClassBonus();
+    int sum = getBase() + getAbility() + getHalfLevel() + getClassBonus() + getRaceBonus();
     if(type.equals(DefenseType.AC)) {
       return sum + getArmor();
     } else {
@@ -62,12 +66,14 @@ public class Defense {
         " -- Base:      %d\n" +
         " -- 1/2 level: %d\n" +
         " -- Class:     %d\n" +
+        " -- Race:      %d\n" +
         " -- Ability:   %d\n" +
         " -- Armor:     %d\n",    
         getScore(),
         getBase(),
         getHalfLevel(),
         getClassBonus(),
+        getRaceBonus(),
         getAbility(),
         type.equals(DefenseType.AC) ? getArmor() : 0);
         

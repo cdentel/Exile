@@ -1,7 +1,7 @@
 package mechanics.skills;
 
-import static mechanics.Attribute.*;
-import mechanics.Attribute;
+import static creatures.components.AttributeType.*;
+import creatures.components.AttributeType;
 
 public enum SkillType {
   
@@ -23,10 +23,10 @@ public enum SkillType {
   STREETWISE(CHARISMA),
   THIEVERY(DEXTERITY);
   
-  public final Attribute attribute;
+  public final AttributeType attribute;
   
 
-  private SkillType(Attribute attribute) {
+  private SkillType(AttributeType attribute) {
     this.attribute = attribute;
   }
 }

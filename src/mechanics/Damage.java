@@ -1,5 +1,7 @@
 package mechanics;
 
+import mechanics.dice.Dice;
+
 public class Damage {
   
   private int fixed;

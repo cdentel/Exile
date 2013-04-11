@@ -1,12 +1,13 @@
 package equipment.weapon;
 
-import static mechanics.Die.d4;
-import mechanics.Attribute;
+import static mechanics.dice.Die.d4;
 import mechanics.Damage;
-import mechanics.Dice;
 import mechanics.defenses.DefenseType;
+import mechanics.dice.Dice;
 
 import com.google.common.collect.ImmutableSet;
+
+import creatures.components.AttributeType;
 
 import equipment.WeaponType;
 
@@ -28,8 +29,8 @@ public class Dagger extends Weapon {
   }
 
   @Override
-  public Attribute getAttributeUsed() {
-    return Attribute.DEXTERITY;
+  public AttributeType getAttributeUsed() {
+    return AttributeType.DEXTERITY;
   }
 
   @Override

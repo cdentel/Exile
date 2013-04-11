@@ -1,13 +1,14 @@
 package creatures;
 import java.util.Set;
 
-import mechanics.Attributes;
 import mechanics.EvaluatedDamage;
-import mechanics.Health;
 import mechanics.defenses.Defenses;
 import attack.Attack;
 import attack.MeleeBasicAttack;
 import creatures.clazz.Clazz;
+import creatures.components.Attributes;
+import creatures.components.Health;
+import creatures.components.Vision;
 import creatures.race.Race;
 import equipment.Equipment;
 import equipment.WeaponType;
@@ -31,11 +32,13 @@ public abstract class Creature {
   
   public abstract String getName();
   
-  public Creature(Attributes attributes, Clazz clazz) {
-    this.attributes = attributes;
-    this.equipment = new Equipment(this);
+  
+  public Creature(Race race, Clazz clazz) {
     this.clazz = clazz;
+    this.race = race;
+    attributes = new Attributes(this);
     health = new Health(this);
+    equipment = new Equipment(this);
   }
   
   public Defenses defenses() {
@@ -74,6 +77,10 @@ public abstract class Creature {
     return clazz;
   }
   
+  public Race getRace() {
+    return race;
+  }
+  
   public Attributes attributes() {
     return attributes;
   }
@@ -89,4 +96,9 @@ public abstract class Creature {
   public Set<ShieldType> getShieldProficiencies() {
     return getClazz().getShieldProficiencies();
   }
+  
+  public Vision getVision() {
+    return race.getVision();
+  }
+
 }

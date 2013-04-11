@@ -1,7 +1,7 @@
 package creatures;
 
-import mechanics.Attributes;
 import creatures.clazz.Clazz;
+import creatures.race.Human;
 
 public class Goblin extends Creature {
   
@@ -10,8 +10,8 @@ public class Goblin extends Creature {
   }
 
   
-  public Goblin(Attributes attributes, Clazz clazz) {
-    super(attributes, clazz);
+  public Goblin(Clazz clazz) {
+    super(new Human(), clazz);
   }
   
 

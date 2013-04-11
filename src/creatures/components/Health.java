@@ -1,6 +1,7 @@
-package mechanics;
+package creatures.components;
 
-import static mechanics.Attribute.CONSTITUTION;
+import static creatures.components.AttributeType.CONSTITUTION;
+import mechanics.EvaluatedDamage;
 import creatures.Creature;
 
 public class Health {
@@ -24,14 +25,14 @@ public class Health {
   public int getMaxHp() {
     return
           // Base + level
-          creature.getClazz().getBaseHitPointsForLevel(creature.getLevel())
-        + creature.attributes().getModifier(CONSTITUTION);
+          creature.getClazz().getBaseHitPointsAtLevel(creature.getLevel())
+        + creature.attributes().get(CONSTITUTION).getModifier();
   }
   
   public int getMaxHealingSurges() {
     return 
         creature.getClazz().getHealingSurges()
-      + creature.attributes().getModifier(CONSTITUTION);
+      + creature.attributes().get(CONSTITUTION).getScore();
   }
   
   public int getCurrentHp() {
@@ -51,6 +52,10 @@ public class Health {
   }
   
   public int surgeValue() {
+    // Draconic Heritage
+    if(creature.getRace().hasDraconicHeritage()) {
+      return getMaxHp() / 4 + creature.attributes().get(CONSTITUTION).getModifier();
+    }
     return getMaxHp() / 4;
   }
   

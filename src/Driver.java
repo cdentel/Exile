@@ -1,9 +1,9 @@
-import mechanics.Attributes;
 import attack.Warhammer;
 import creatures.Creature;
 import creatures.Goblin;
 import creatures.Hero;
 import creatures.clazz.Fighter;
+import creatures.race.Human;
 import equipment.Equipment;
 import equipment.shield.Shield;
 import equipment.shield.ShieldType;
@@ -35,12 +35,12 @@ public class Driver {
       System.out.println("Goblin");
       System.out.println(g.health());
     }
-      System.out.printf("%s Victory!\n", g.health().isConscious() ? g.getName() : h.getName());
+      System.out.printf("%s Victory!\n", g.health().isConscious() ? g.getName() : h.getName());    
   }
   
   private static Hero getHero() {
-    Attributes a = new Attributes(10, 16, 14, 12, 16, 12);
-    Hero h =  new Hero(a, new Fighter());
+    Hero h =  new Hero(new Human(), new Fighter());
+    h.attributes().set(10, 16, 14, 12, 16, 12);
     Equipment e = h.equipment();
     e.setTorso(new Torso(ArmorType.SCALE));
     e.setFootwear(new Footwear(ArmorType.SCALE));
@@ -51,8 +51,8 @@ public class Driver {
   }
   
   private static Goblin getGoblin() {
-    Attributes a = new Attributes(10, 16, 18, 12, 12, 12);
-    Goblin g = new Goblin(a, new Fighter());
+    Goblin g = new Goblin(new Fighter());
+    g.attributes().set(10, 16, 18, 12, 12, 12);
     Equipment e = g.equipment();
     e.setTorso(new Torso(ArmorType.LEATHER));
     e.setHandwear(new Handwear(ArmorType.SCALE));

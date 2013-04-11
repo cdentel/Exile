@@ -1,11 +1,11 @@
 package mechanics.defenses;
 
-import static mechanics.Attribute.CHARISMA;
-import static mechanics.Attribute.CONSTITUTION;
-import static mechanics.Attribute.DEXTERITY;
-import static mechanics.Attribute.INTELLIGENCE;
-import static mechanics.Attribute.STRENGTH;
-import mechanics.Attribute;
+import static creatures.components.AttributeType.CHARISMA;
+import static creatures.components.AttributeType.CONSTITUTION;
+import static creatures.components.AttributeType.DEXTERITY;
+import static creatures.components.AttributeType.INTELLIGENCE;
+import static creatures.components.AttributeType.STRENGTH;
+import creatures.components.AttributeType;
 
 public enum DefenseType {
   AC(DEXTERITY, INTELLIGENCE), 
@@ -13,10 +13,11 @@ public enum DefenseType {
   REFLEX(DEXTERITY, INTELLIGENCE), 
   WILL(CHARISMA, CONSTITUTION);
   
-  public final Attribute first, second;
+  public final AttributeType first, second;
   
-  private DefenseType(Attribute first, Attribute second) {
+  private DefenseType(AttributeType first, AttributeType second) {
     this.first = first;
     this.second = second; 
   }
+  
 }

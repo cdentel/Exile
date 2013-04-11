@@ -2,19 +2,27 @@ package creatures.clazz;
 
 import java.util.Set;
 
-import mechanics.defenses.DefenseModifier;
-import mechanics.skills.StartingSkills;
+import mechanics.Choice;
+import mechanics.Modifier;
+import mechanics.defenses.DefenseType;
+import mechanics.skills.SkillType;
+
+import com.google.common.collect.ImmutableSet;
+
 import equipment.WeaponType;
 import equipment.shield.ShieldType;
 import equipment.wearable.ArmorType;
 
 public abstract class Clazz {
   
-  public abstract DefenseModifier getDefenseModifier();
+  
+  public abstract ClazzType getClassType();
+  
+  public abstract Modifier<DefenseType> getDefenseModifier();
   
   public abstract int getHealingSurges();
   
-  public abstract int getBaseHitPointsForLevel(int level);
+  public abstract int getBaseHitPoints();
   
   public abstract Set<ArmorType> getArmorProficiencies();
   
@@ -22,23 +30,16 @@ public abstract class Clazz {
   
   public abstract Set<WeaponType> getWeaponProficiencies();
   
-  public abstract StartingSkills getStartingSkills();
-  
-  public int getAcBonus() {
-    return 0;
+  public abstract int getHitPointsGainedPerLevel();
+
+  public int getBaseHitPointsAtLevel(int level) {
+    return getHitPointsGainedPerLevel() * (level -1) + getBaseHitPoints();
   }
   
-  public int getFortitudeBonus() {
-    return 0;
+  public Set<SkillType> getStartingSkills() {
+    return ImmutableSet.of();
   }
   
-  public int getReflexBonus() {
-    return 0;
-  }
-  
-  public int getWillBonus() {
-    return 0;
-  }
-  
+  public abstract Choice<SkillType> getCreationSkillChoices();
 
 }

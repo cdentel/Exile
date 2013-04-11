@@ -1,4 +1,4 @@
-package mechanics;
+package mechanics.dice;
 
 public interface Rollable {
 

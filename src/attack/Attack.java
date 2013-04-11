@@ -1,8 +1,8 @@
 package attack;
 
 import mechanics.Damage;
-import mechanics.Die;
 import mechanics.defenses.Defense;
+import mechanics.dice.Die;
 import creatures.Creature;
 
 public abstract class Attack {

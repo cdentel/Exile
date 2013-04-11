@@ -1,10 +1,11 @@
 package equipment.weapon;
 
-import mechanics.Attribute;
 import mechanics.Damage;
 import mechanics.defenses.DefenseType;
 
 import com.google.common.collect.ImmutableSet;
+
+import creatures.components.AttributeType;
 
 import equipment.Implement;
 import equipment.WeaponType;
@@ -15,7 +16,7 @@ public abstract class Weapon extends Implement {
   
   public abstract int getAttackRollModifier();
   
-  public abstract Attribute getAttributeUsed();
+  public abstract AttributeType getAttributeUsed();
   
   public abstract DefenseType getDefenseType();
 

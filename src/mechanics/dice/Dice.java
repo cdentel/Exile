@@ -1,4 +1,4 @@
-package mechanics;
+package mechanics.dice;
 
 import java.util.Collections;
 
