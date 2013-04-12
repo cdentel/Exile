@@ -1,9 +1,3 @@
-import attack.Warhammer;
-import creatures.Creature;
-import creatures.Goblin;
-import creatures.Hero;
-import creatures.clazz.Fighter;
-import creatures.race.Human;
 import equipment.Equipment;
 import equipment.shield.Shield;
 import equipment.shield.ShieldType;
@@ -12,6 +6,15 @@ import equipment.wearable.ArmorType;
 import equipment.wearable.Footwear;
 import equipment.wearable.Handwear;
 import equipment.wearable.Torso;
+import graphics.CreatureViewer;
+import attack.Warhammer;
+import creatures.Creature;
+import creatures.Goblin;
+import creatures.Hero;
+import creatures.clazz.Fighter;
+import creatures.components.AttributeType;
+import creatures.components.Language;
+import creatures.race.Human;
 
 
 public class Driver {
@@ -20,6 +23,11 @@ public class Driver {
    * @param args
    */
   public static void main(String[] args) {
+    Creature creature = getHero();
+    
+    CreatureViewer viewer = new CreatureViewer(creature);
+    
+    /*
     Hero h = getHero();
     Goblin g = getGoblin();
     printStats(h);
@@ -35,16 +43,18 @@ public class Driver {
       System.out.println("Goblin");
       System.out.println(g.health());
     }
-      System.out.printf("%s Victory!\n", g.health().isConscious() ? g.getName() : h.getName());    
+      System.out.printf("%s Victory!\n", g.health().isConscious() ? g.getName() : h.getName());    */
   }
   
   private static Hero getHero() {
     Hero h =  new Hero(new Human(), new Fighter());
+    h.getRace().getAbilityScoreModifierChoice().choose(AttributeType.WISDOM);
+    
     h.attributes().set(10, 16, 14, 12, 16, 12);
     Equipment e = h.equipment();
-    e.setTorso(new Torso(ArmorType.SCALE));
-    e.setFootwear(new Footwear(ArmorType.SCALE));
-    e.setHandwear(new Handwear(ArmorType.SCALE));
+    e.setTorso(new Torso(ArmorType.CHAIN));
+    e.setFootwear(new Footwear(ArmorType.CHAIN));
+    e.setHandwear(new Handwear(ArmorType.CHAIN));
     e.setLeftHand(new Shield(ShieldType.HEAVY));
     e.setRightHand(new Warhammer());
     return h;

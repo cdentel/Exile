@@ -5,9 +5,6 @@ import mechanics.Modifier;
 import mechanics.ModifierChoice;
 import mechanics.defenses.DefenseType;
 import mechanics.skills.SkillType;
-
-import com.google.common.collect.ImmutableSet;
-
 import creatures.components.AttributeType;
 import creatures.components.CreatureSize;
 import creatures.components.Language;
@@ -47,10 +44,6 @@ public abstract class Race {
   
   public abstract Choice<Language> getCreationLanguageChoice();
   
-  public ImmutableSet<ModifierChoice<AttributeType>> getCreationAttributeChoices() {
-    return ImmutableSet.of();
-  }
-
   public ModifierChoice<AttributeType> getAbilityScoreModifierChoice() {
     return ModifierChoice.none();
   }

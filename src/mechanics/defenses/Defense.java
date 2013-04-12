@@ -19,8 +19,8 @@ public class Defense {
         !creature.equipment().getTorso().isPresent() || 
         creature.equipment().getTorso().get().getArmorType().armorWeight.equals(ArmorWeight.LIGHT)) {
       return Math.max(
-          creature.attributes().get(type.first).getScore(),
-          creature.attributes().get(type.second).getScore());
+          creature.attributes().get(type.first).getModifier(),
+          creature.attributes().get(type.second).getModifier());
     } else {
       return 0;
     }

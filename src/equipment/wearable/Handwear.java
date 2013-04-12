@@ -19,8 +19,8 @@ public class Handwear extends Wearable {
   }
 
   @Override
-  public int getMaterialMovementMultiplier() {
-    return 0;
+  public double getMaterialMovementMultiplier() {
+    return 0.15;
   }
 
   @Override

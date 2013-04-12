@@ -3,6 +3,7 @@ import java.util.Set;
 
 import mechanics.EvaluatedDamage;
 import mechanics.defenses.Defenses;
+import mechanics.skills.Skills;
 import attack.Attack;
 import attack.MeleeBasicAttack;
 import creatures.clazz.Clazz;
@@ -30,6 +31,8 @@ public abstract class Creature {
   
   protected Health health;
   
+  protected Skills skills;
+  
   public abstract String getName();
   
   
@@ -39,6 +42,7 @@ public abstract class Creature {
     attributes = new Attributes(this);
     health = new Health(this);
     equipment = new Equipment(this);
+    skills = new Skills(this);
   }
   
   public Defenses defenses() {
@@ -99,6 +103,10 @@ public abstract class Creature {
   
   public Vision getVision() {
     return race.getVision();
+  }
+  
+  public Skills getSkills() {
+    return skills;
   }
 
 }

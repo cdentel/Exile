@@ -7,40 +7,39 @@ import creatures.Creature;
 public class Health {
   
   private Creature creature;
-  private int currentHp;
-  private int currentSurges;
+  private int damageTaken;
+  private int surgesUsed;
   
   public Health(Creature c){
-    this.creature = c;
-    currentHp = getMaxHp();
-    currentSurges = getMaxHealingSurges();
+    this(c, 0, 0);
   }
   
-  public Health(Creature c, int currentHp, int currentHealingSurges) {
-    this(c);
-    this.currentHp = currentHp;
-    this.currentSurges = currentHealingSurges;
+  public Health(Creature c, int damageTaken, int surgesUsed) {
+    this.creature = c;
+    this.damageTaken = damageTaken;
+    this.surgesUsed = surgesUsed;
+    
   }
   
   public int getMaxHp() {
     return
           // Base + level
           creature.getClazz().getBaseHitPointsAtLevel(creature.getLevel())
-        + creature.attributes().get(CONSTITUTION).getModifier();
+        + creature.attributes().get(CONSTITUTION).getScore();
   }
   
   public int getMaxHealingSurges() {
     return 
         creature.getClazz().getHealingSurges()
-      + creature.attributes().get(CONSTITUTION).getScore();
+      + creature.attributes().get(CONSTITUTION).getModifier();
   }
   
   public int getCurrentHp() {
-    return currentHp;
+    return getMaxHp() - damageTaken;
   }
   
   public int  getCurrentHealingSurges() {
-    return currentSurges;
+    return getMaxHealingSurges() - surgesUsed;
   }
   
   public boolean isBloodied() {
@@ -64,7 +63,7 @@ public class Health {
   }
   
   public void takeDamage(EvaluatedDamage damage) {
-    currentHp -= damage.getBasicDamage();
+    damageTaken += damage.getBasicDamage();
   }
   
   @Override

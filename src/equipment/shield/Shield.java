@@ -23,4 +23,8 @@ public class Shield extends Implement {
   public int getArmorClassModifer() {
     return (size.armorBonus);
   }
+
+  public int getMovementModifier() {
+    return size.check;
+  }
 }

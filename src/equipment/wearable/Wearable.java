@@ -4,12 +4,12 @@ import equipment.Item;
 
 public abstract class Wearable implements Item {
   
-  public int getArmorClassModifer() {
+  public int getArmorClassModifier() {
     return (int) (getArmorType().armorBonus * getMaterialArmorClassMultiplier());
   }
   
-  public int getMovementModifer() {
-    return getArmorType().check * getMaterialMovementMultiplier();
+  public int getMovementModifier() {
+    return (int) (getArmorType().check * getMaterialMovementMultiplier());
   }
   
   @Override
@@ -21,7 +21,7 @@ public abstract class Wearable implements Item {
   
   public abstract double getMaterialArmorClassMultiplier();
   
-  public abstract int getMaterialMovementMultiplier();
+  public abstract double getMaterialMovementMultiplier();
   
   public abstract double getWeightMultiplier();
 

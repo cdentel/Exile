@@ -29,18 +29,19 @@ public class Equipment {
   
   public int getAmorClassModifier() {
     return 
-          (torso.isPresent()      ? torso.get().getArmorClassModifer()      : 0)
-        + (handwear.isPresent()   ? handwear.get().getArmorClassModifer()   : 0) 
-        + (footwear.isPresent()   ? footwear.get().getArmorClassModifer()   : 0)
+          (torso.isPresent()      ? torso.get().getArmorClassModifier()      : 0)
+        + (handwear.isPresent()   ? handwear.get().getArmorClassModifier()   : 0) 
+        + (footwear.isPresent()   ? footwear.get().getArmorClassModifier()   : 0)
         + (leftHand.isPresent()   ? leftHand.get().getArmorClassModifer()   : 0)
         + (rightHand.isPresent()  ? rightHand.get().getArmorClassModifer()  : 0);
   }
   
   public int getMovementModifer() {
     return 
-          (torso.isPresent()    ? torso.get().getMovementModifer()    : 0)
-        + (handwear.isPresent() ? handwear.get().getMovementModifer() : 0) 
-        + (footwear.isPresent() ? footwear.get().getMovementModifer() : 0);
+          (torso.isPresent()    ? torso.get().getMovementModifier()    : 0)
+        + (handwear.isPresent() ? handwear.get().getMovementModifier() : 0) 
+        + (footwear.isPresent() ? footwear.get().getMovementModifier() : 0)
+        + (leftHand.isPresent() ? leftHand.get().getMovementModifier(): 0);
   }
   
   public double getWeight() {

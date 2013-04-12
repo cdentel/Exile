@@ -20,8 +20,8 @@ public class Footwear extends Wearable {
   }
 
   @Override
-  public int getMaterialMovementMultiplier() {
-    return 1;
+  public double getMaterialMovementMultiplier() {
+    return 0.25;
   }
 
   @Override

@@ -20,4 +20,23 @@ public enum DefenseType {
     this.second = second; 
   }
   
+  @Override
+  public String toString() {
+    if(equals(AC)) {
+      return super.toString();
+    } else {
+      return "" + name().charAt(0) + name().substring(1).toLowerCase();
+    }
+  }
+    
+  public String getAbbreviation() {
+    if(equals(REFLEX)) {
+      return name().substring(0, 3);
+    } else if(name().length() > 4) {
+      return name().substring(0, 4);
+    } else {
+      return name();
+    }
+  }
+  
 }

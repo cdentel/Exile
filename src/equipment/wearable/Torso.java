@@ -18,8 +18,8 @@ public class Torso extends Wearable {
   }
 
   @Override
-  public int getMaterialMovementMultiplier() {
-    return 2;
+  public double getMaterialMovementMultiplier() {
+    return 1.0;
   }
 
   @Override
