@@ -4,11 +4,17 @@ import java.util.Set;
 import mechanics.EvaluatedDamage;
 import mechanics.defenses.Defenses;
 import mechanics.skills.Skills;
+import mechanics.skills.TrainedSkills;
 import attack.Attack;
 import attack.MeleeBasicAttack;
+
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSet;
+
 import creatures.clazz.Clazz;
 import creatures.components.Attributes;
 import creatures.components.Health;
+import creatures.components.Language;
 import creatures.components.Vision;
 import creatures.race.Race;
 import equipment.Equipment;
@@ -36,13 +42,13 @@ public abstract class Creature {
   public abstract String getName();
   
   
-  public Creature(Race race, Clazz clazz) {
+  public Creature(Race race, Clazz clazz, TrainedSkills trainedSkills) {
     this.clazz = clazz;
     this.race = race;
     attributes = new Attributes(this);
     health = new Health(this);
     equipment = new Equipment(this);
-    skills = new Skills(this);
+    skills = new Skills(this, trainedSkills);
   }
   
   public Defenses defenses() {
@@ -107,6 +113,10 @@ public abstract class Creature {
   
   public Skills getSkills() {
     return skills;
+  }
+  
+  public ImmutableSet<Language> getLanguages() {
+    return race.getLanguages();
   }
 
 }

@@ -1,3 +1,4 @@
+import powers.dragonborn.DragonBreathOption;
 import equipment.Equipment;
 import equipment.shield.Shield;
 import equipment.shield.ShieldType;
@@ -7,14 +8,20 @@ import equipment.wearable.Footwear;
 import equipment.wearable.Handwear;
 import equipment.wearable.Torso;
 import graphics.CreatureViewer;
+import mechanics.DamageType;
+import mechanics.skills.SkillType;
+import mechanics.skills.TrainedSkills;
 import attack.Warhammer;
 import creatures.Creature;
-import creatures.Goblin;
 import creatures.Hero;
+import creatures.Monster;
+import creatures.clazz.Clazz;
 import creatures.clazz.Fighter;
 import creatures.components.AttributeType;
 import creatures.components.Language;
+import creatures.race.Dragonborn;
 import creatures.race.Human;
+import creatures.race.Race;
 
 
 public class Driver {
@@ -23,7 +30,7 @@ public class Driver {
    * @param args
    */
   public static void main(String[] args) {
-    Creature creature = getHero();
+    Creature creature = getMonster();
     
     CreatureViewer viewer = new CreatureViewer(creature);
     
@@ -47,10 +54,15 @@ public class Driver {
   }
   
   private static Hero getHero() {
-    Hero h =  new Hero(new Human(), new Fighter());
-    h.getRace().getAbilityScoreModifierChoice().choose(AttributeType.WISDOM);
+    Race race = new Human(Language.ELVEN, AttributeType.STRENGTH);
+    Clazz clazz = new Fighter();
+    TrainedSkills skills = TrainedSkills.getTrainedSkillBuilderFor(race, clazz)
+        .chooseClazzSkill(SkillType.ATHLETICS).chooseClazzSkill(SkillType.ENDURANCE)
+        .chooseClazzSkill(SkillType.HEAL).chooseClazzSkill(SkillType.INTIMIDATE)
+        .build();
     
-    h.attributes().set(10, 16, 14, 12, 16, 12);
+    Hero h =  new Hero(race, clazz, skills);
+    h.attributes().set(10, 14, 11, 8, 18, 10);
     Equipment e = h.equipment();
     e.setTorso(new Torso(ArmorType.CHAIN));
     e.setFootwear(new Footwear(ArmorType.CHAIN));
@@ -60,13 +72,21 @@ public class Driver {
     return h;
   }
   
-  private static Goblin getGoblin() {
-    Goblin g = new Goblin(new Fighter());
-    g.attributes().set(10, 16, 18, 12, 12, 12);
+  private static Monster getMonster() {
+    Race race = new Dragonborn(DragonBreathOption.withModifierAndDamageType(
+        AttributeType.DEXTERITY, DamageType.POISON));
+    Clazz clazz = new Fighter();
+    TrainedSkills skills = TrainedSkills.getTrainedSkillBuilderFor(race, clazz)
+      .chooseClazzSkill(SkillType.STREETWISE)
+      .chooseClazzSkill(SkillType.ATHLETICS)
+      .chooseClazzSkill(SkillType.INTIMIDATE)
+      .build();
+    Monster g = new Monster(race, clazz, skills);
+    g.attributes().set(8, 14, 18, 11, 10, 10);
     Equipment e = g.equipment();
     e.setTorso(new Torso(ArmorType.LEATHER));
-    e.setHandwear(new Handwear(ArmorType.SCALE));
-    e.setFootwear(new Footwear(ArmorType.SCALE));
+    e.setHandwear(new Handwear(ArmorType.LEATHER));
+    e.setFootwear(new Footwear(ArmorType.LEATHER));
     e.setRightHand(new Dagger());
     return g;
 

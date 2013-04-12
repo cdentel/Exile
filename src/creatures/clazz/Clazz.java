@@ -2,7 +2,6 @@ package creatures.clazz;
 
 import java.util.Set;
 
-import mechanics.Choice;
 import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
 import mechanics.skills.SkillType;
@@ -40,6 +39,9 @@ public abstract class Clazz {
     return ImmutableSet.of();
   }
   
-  public abstract Choice<SkillType> getCreationSkillChoices();
+  public abstract Set<SkillType> getTrainableSkills();
+  
+  public abstract int getNumberOfSkillChoices();
+  
 
 }

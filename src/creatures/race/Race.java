@@ -1,5 +1,7 @@
 package creatures.race;
 
+import com.google.common.collect.ImmutableSet;
+
 import mechanics.Choice;
 import mechanics.Modifier;
 import mechanics.ModifierChoice;
@@ -42,14 +44,14 @@ public abstract class Race {
     return 0;
   }
   
-  public abstract Choice<Language> getCreationLanguageChoice();
-  
-  public ModifierChoice<AttributeType> getAbilityScoreModifierChoice() {
-    return ModifierChoice.none();
-  }
+  public abstract ImmutableSet<Language> getLanguages();
   
   public boolean hasDraconicHeritage() {
     return false;
+  }
+
+  public int getCreationBonusSkillChoices() {
+    return 0;
   }
 
 }

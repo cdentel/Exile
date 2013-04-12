@@ -2,12 +2,12 @@ package creatures.clazz;
 
 import java.util.Set;
 
-import com.google.common.collect.ImmutableSet;
-
-import mechanics.Choice;
 import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
 import mechanics.skills.SkillType;
+
+import com.google.common.collect.ImmutableSet;
+
 import equipment.WeaponType;
 import equipment.shield.ShieldType;
 import equipment.wearable.ArmorType;
@@ -57,9 +57,19 @@ public class Cleric extends Clazz {
   public Set<WeaponType> getWeaponProficiencies() {
     return ImmutableSet.of(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED);
   }
+  
+  @Override
+  public Set<SkillType> getStartingSkills() {
+    return ImmutableSet.of(SkillType.RELIGION);
+  }
 
   @Override
-  public Choice<SkillType> getCreationSkillChoices() {
-    return Choice.of(4, false, ImmutableSet.of(SkillType.RELIGION, SkillType.ARCANA, SkillType.DIPLOMACY, SkillType.HEAL, SkillType.HISTORY, SkillType.INSIGHT));
+  public Set<SkillType> getTrainableSkills() {
+    return ImmutableSet.of(SkillType.ARCANA, SkillType.DIPLOMACY, SkillType.HEAL, SkillType.HISTORY, SkillType.INSIGHT);
+  }
+  
+  @Override
+  public int getNumberOfSkillChoices() {
+    return 3;
   }
 }

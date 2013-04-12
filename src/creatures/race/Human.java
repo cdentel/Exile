@@ -1,17 +1,28 @@
 package creatures.race;
 
-import java.util.Arrays;
-
-import mechanics.Choice;
 import mechanics.Modifier;
-import mechanics.ModifierChoice;
 import mechanics.defenses.DefenseType;
+
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSet;
+
 import creatures.components.AttributeType;
 import creatures.components.CreatureSize;
 import creatures.components.Language;
 import creatures.components.Vision;
 
+
+// Complete
 public class Human extends Race {
+  
+  private Modifier<AttributeType> bonusAttribute;
+  private Language languageChoice;
+  
+  public Human(Language choice, AttributeType bonus) {
+    Preconditions.checkArgument(!choice.equals(Language.COMMON));
+    this.languageChoice = choice;
+    this.bonusAttribute = Modifier.with(bonus, 2);
+  }
 
   @Override
   public Vision getVision() {
@@ -57,21 +68,13 @@ public class Human extends Race {
   }
   
   @Override
-  public Choice<Language> getCreationLanguageChoice() {
-    Choice<Language> lang = Choice.of(2, false, Language.values());
-    lang.choose(Language.COMMON);
-    return lang;
+  public ImmutableSet<Language> getLanguages() {
+    
+    return ImmutableSet.of(languageChoice, Language.COMMON);
   }
 
   @Override
   public Modifier<AttributeType> getAbilityScoreModifier() {
-    return Modifier.none();
+    return bonusAttribute;
   }
-  
-  @Override
-  public ModifierChoice<AttributeType> getAbilityScoreModifierChoice() {
-    return ModifierChoice.of(1, 2, Arrays.asList(AttributeType.values()));
-  }
-
-
 }

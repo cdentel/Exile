@@ -35,8 +35,7 @@ public class Attribute {
   
   public int getRaceModifier() {
     return 
-          creature.getRace().getAbilityScoreModifier().get(type) + 
-        + creature.getRace().getAbilityScoreModifierChoice().modifier().get(type);
-  }
+          creature.getRace().getAbilityScoreModifier().get(type);
+    }
 
 }

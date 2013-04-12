@@ -9,9 +9,10 @@ public class Skill {
   
   private boolean trained;
   
-  public Skill(Creature creature, SkillType type) {
+  public Skill(Creature creature, SkillType type, boolean trained) {
     this.creature = creature;
     this.type = type;
+    this.trained = trained;
   }
   
   public int getScore() {

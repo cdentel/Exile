@@ -1,14 +1,28 @@
 package creatures.race;
 
-import mechanics.Choice;
 import mechanics.Modifier;
 import mechanics.skills.SkillType;
+import powers.dragonborn.DragonBreathOption;
+
+import com.google.common.collect.ImmutableSet;
+
 import creatures.components.AttributeType;
 import creatures.components.CreatureSize;
 import creatures.components.Language;
 import creatures.components.Vision;
 
+
+// Missing DragonbornFury, DragonBreath
 public class Dragonborn extends Race {
+  
+  private DragonBreathOption option;
+  
+  
+  public Dragonborn(DragonBreathOption option) {
+    super();
+    this.option = option;
+
+  }
 
   @Override
   public RaceType getRaceType() {
@@ -36,11 +50,8 @@ public class Dragonborn extends Race {
   }
 
   @Override
-  public Choice<Language> getCreationLanguageChoice() {
-    Choice<Language> choice = Choice.of(2, false, Language.values());
-    choice.choose(Language.COMMON);
-    choice.choose(Language.DRACONIC);
-    return choice;
+  public ImmutableSet<Language> getLanguages() {
+    return ImmutableSet.of(Language.COMMON, Language.DRACONIC);
   }
   
   @Override

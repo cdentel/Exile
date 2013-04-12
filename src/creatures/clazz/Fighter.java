@@ -17,7 +17,6 @@ import static mechanics.skills.SkillType.STREETWISE;
 
 import java.util.Set;
 
-import mechanics.Choice;
 import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
 import mechanics.skills.SkillType;
@@ -72,11 +71,13 @@ public class Fighter extends Clazz {
   }
 
   @Override
-  public Choice<SkillType> getCreationSkillChoices() {
-    return Choice.of(
-        3,
-        false,
-        ImmutableSet.of(ATHLETICS, ENDURANCE, HEAL, INTIMIDATE, STREETWISE));
+  public Set<SkillType> getTrainableSkills() {
+    return ImmutableSet.of(ATHLETICS, ENDURANCE, HEAL, INTIMIDATE, STREETWISE);
+  }
+  
+  @Override
+  public int getNumberOfSkillChoices() {
+    return 3;
   }
 
   @Override
