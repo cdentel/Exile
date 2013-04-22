@@ -8,10 +8,12 @@ import creatures.Creature;
 public abstract class Attack {
   
   protected Creature attacker, opponent;
+  protected DamageDealing damager;
   
-  public Attack(Creature attacker, Creature opponent) {
+  public Attack(Creature attacker, Creature opponent, DamageDealing damager) {
     this.attacker = attacker;
     this.opponent = opponent;
+    this.damager = damager;
   }
   
   public abstract int getAttackModifier();

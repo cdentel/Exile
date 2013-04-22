@@ -20,7 +20,7 @@ public class Dagger extends Weapon {
 
   @Override
   public Damage getDamage() {
-    return new Damage(Dice.with(d4));
+    return Damage.basic(Dice.with(d4));
   }
 
   @Override

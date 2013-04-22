@@ -64,7 +64,7 @@ public abstract class Creature {
   }
   
   public void takeDamage(EvaluatedDamage d) {
-    System.out.printf("%s takes %d damage.\n", getName(), d.getBasicDamage());
+    System.out.printf("%s takes %d damage.\n", getName(), d.getTotalDamage());
     health.takeDamage(d);
   }
   

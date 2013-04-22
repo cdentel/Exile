@@ -1,5 +1,5 @@
 package mechanics;
 
 public enum DamageType {
-  ACID, COLD, FIRE, LIGHTNING, POISON;
+  ACID, BASIC, COLD, FIRE, LIGHTNING, POISON;
 }

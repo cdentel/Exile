@@ -1,4 +1,4 @@
-package attack;
+package equipment.weapon;
 
 import mechanics.Damage;
 import mechanics.defenses.DefenseType;
@@ -10,8 +10,6 @@ import com.google.common.collect.ImmutableSet;
 import creatures.components.AttributeType;
 
 import equipment.WeaponType;
-import equipment.weapon.Weapon;
-import equipment.weapon.WeaponGroup;
 
 public class Warhammer extends Weapon {
 
@@ -22,7 +20,7 @@ public class Warhammer extends Weapon {
 
   @Override
   public Damage getDamage() {
-    return new Damage(Dice.with(Die.d10));
+    return Damage.basic(Dice.with(Die.d10));
   }
 
   @Override

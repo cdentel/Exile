@@ -3,6 +3,8 @@ package equipment.weapon;
 import mechanics.Damage;
 import mechanics.defenses.DefenseType;
 
+import attack.DamageDealing;
+
 import com.google.common.collect.ImmutableSet;
 
 import creatures.components.AttributeType;
@@ -10,7 +12,7 @@ import creatures.components.AttributeType;
 import equipment.Implement;
 import equipment.WeaponType;
 
-public abstract class Weapon extends Implement {
+public abstract class Weapon extends Implement implements DamageDealing {
   
   public abstract Damage getDamage();
   

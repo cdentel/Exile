@@ -1,8 +1,10 @@
 package mechanics.dice;
 
+import java.util.Collection;
 import java.util.Collections;
 
 import com.google.common.collect.Multiset;
+import com.google.common.collect.Multisets;
 import com.google.common.collect.TreeMultiset;
 
 public class Dice implements Rollable {
@@ -12,6 +14,10 @@ public class Dice implements Rollable {
   private Dice(Die... dies) {
     dice = TreeMultiset.create();
     Collections.addAll(dice, dies);
+  }
+  
+  private Dice(Collection<Die> dies) {
+    dice = TreeMultiset.create(dies);
   }
   
   public static Dice with(Die... dies) {
@@ -32,6 +38,10 @@ public class Dice implements Rollable {
       sum += d.critValue();
     }
     return sum;
+  }
+
+  public Dice add(Dice other) {
+    return new Dice(Multisets.sum(dice, other.dice));
   }
   
 }

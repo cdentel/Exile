@@ -7,30 +7,27 @@ import equipment.weapon.Weapon;
 
 public class MeleeBasicAttack extends Attack {
   
-  protected Weapon attackingWeapon;
-
   public MeleeBasicAttack(Creature attacker, Creature opponent, Weapon attackingWeapon) {
-    super(attacker, opponent);
-    this.attackingWeapon = attackingWeapon;
+    super(attacker, opponent, attackingWeapon);
   }
 
   @Override
   public int getAttackModifier() {
     return
           // Weapon Modifier
-          attackingWeapon.getAttackRollModifier()
+          damager.getAttackRollModifier()
           // The relevant attribute modifier
-        + attacker.attributes().get(attackingWeapon.getAttributeUsed()).getModifier();
+        + attacker.attributes().get(damager.getAttributeUsed()).getModifier();
   }
 
   @Override
   public Damage getDamage() {
-    return attackingWeapon.getDamage();
+    return damager.getDamage();
   }
 
   @Override
   public Defense getDefense() {
-    return opponent.defenses().getDefense(attackingWeapon.getDefenseType());
+    return opponent.defenses().getDefense(damager.getDefenseType());
   }
   
 

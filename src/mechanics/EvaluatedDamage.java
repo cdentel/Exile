@@ -1,19 +1,23 @@
 package mechanics;
 
-public class EvaluatedDamage {
+import java.util.Map;
 
-  private int basic;
+import com.google.common.collect.ImmutableMap;
+
+public class EvaluatedDamage {
   
-  private EvaluatedDamage(int basic) {
-    this.basic = basic;
+  private final ImmutableMap<DamageType, Integer> damages;
+  
+  public EvaluatedDamage(Map<DamageType, Integer> damages) {
+    this.damages = ImmutableMap.copyOf(damages);
   }
   
-  public static EvaluatedDamage basic(int basicDamage) {
-    return new EvaluatedDamage(basicDamage);
-  }
-  
-  public int getBasicDamage() {
-    return basic;
+  public int getTotalDamage() {
+    int sum = 0;
+    for(Integer damage : damages.values()) {
+      sum += damage;
+    }
+    return sum;
   }
 
 }

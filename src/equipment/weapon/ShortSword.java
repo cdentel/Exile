@@ -20,7 +20,7 @@ public class ShortSword extends Weapon {
 
   @Override
   public Damage getDamage() {
-    return new Damage(Dice.with(d6));
+    return Damage.basic(Dice.with(d6));
   }
 
   @Override

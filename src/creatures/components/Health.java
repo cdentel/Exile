@@ -63,7 +63,7 @@ public class Health {
   }
   
   public void takeDamage(EvaluatedDamage damage) {
-    damageTaken += damage.getBasicDamage();
+    damageTaken += damage.getTotalDamage();
   }
   
   @Override
