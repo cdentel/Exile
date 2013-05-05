@@ -1,4 +1,13 @@
-import java.awt.Dimension;
+import equipment.Equipment;
+import equipment.shield.Shield;
+import equipment.shield.ShieldType;
+import equipment.weapon.Dagger;
+import equipment.weapon.Warhammer;
+import equipment.wearable.ArmorType;
+import equipment.wearable.Footwear;
+import equipment.wearable.Handwear;
+import equipment.wearable.Torso;
+import graphics.Map;
 
 import javax.swing.JFrame;
 
@@ -18,16 +27,6 @@ import creatures.components.Language;
 import creatures.race.Dragonborn;
 import creatures.race.Human;
 import creatures.race.Race;
-import equipment.Equipment;
-import equipment.shield.Shield;
-import equipment.shield.ShieldType;
-import equipment.weapon.Dagger;
-import equipment.weapon.Warhammer;
-import equipment.wearable.ArmorType;
-import equipment.wearable.Footwear;
-import equipment.wearable.Handwear;
-import equipment.wearable.Torso;
-import graphics.Map;
 
 
 public class Driver {

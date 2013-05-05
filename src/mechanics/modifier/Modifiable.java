@@ -1,29 +1,31 @@
 package mechanics.modifier;
 
+import mechanics.modifier.numeric.Numeric;
+
 import com.google.common.base.Preconditions;
 
-public abstract class Modifiable<T extends Enum<T>> {
+public abstract class Modifiable<T extends Enum<T>, N extends Number> {
 
-  protected ModificationCollection<T> collection ;
+  protected ModificationCollection<T, N> collection ;
   
-  public Modifiable() {
-    collection = new ModificationCollection<>();
+  protected Modifiable(Numeric<N> numeric) {
+    collection = new ModificationCollection<>(numeric);
   }
   
-  public int get(T type) {
+  public N get(T type) {
     Preconditions.checkNotNull(type);
     return collection.getTotal(type);
   }
   
-  public int get(T type, ModifierType modType) {
+  public N get(T type, ModifierType modType) {
     return collection.getTypeTotal(type, modType);
   }
   
-  public void add(Modifier<T> modifier) {
+  public void add(Modifier<T, N> modifier) {
     collection.add(modifier);
   }
   
-  public void remove(Modifier<T> modifier) {
+  public void remove(Modifier<T, N> modifier) {
     collection.remove(modifier);
   }
 }

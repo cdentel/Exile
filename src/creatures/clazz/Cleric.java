@@ -21,7 +21,7 @@ public class Cleric extends Clazz {
   }
 
   @Override
-  public Modifier<DefenseType> getDefenseModifier() {
+  public Modifier<DefenseType, Integer> getDefenseModifier() {
     return Modifier.of(ModifierType.CLAZZ, DefenseType.WILL, 2);
   }
 

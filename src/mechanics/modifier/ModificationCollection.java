@@ -5,43 +5,45 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import mechanics.modifier.numeric.Numeric;
+
 import com.google.common.base.Preconditions;
 
 
-public class ModificationCollection<T extends Enum<T>> {
+public class ModificationCollection<T extends Enum<T>, N extends Number> {
 
-  private Map<ModifierType, List<Modifier<T>>> modifications;
-  private Map<ModifierType, Modifier<T>> typeTotals;
-  private ModifierTotal<T> total;
+  private Map<ModifierType, List<Modifier<T, N>>> modifications;
+  private Map<ModifierType, ModifierTotal<T, N>> typeTotals;
+  private ModifierTotal<T, N> total;
   
   
-  public ModificationCollection() {
+  public ModificationCollection(Numeric<N> numeric) {
     modifications = new HashMap<>();
     for(ModifierType type : ModifierType.values()) {
-      modifications.put(type, new LinkedList<Modifier<T>>());
-      typeTotals.put(type, Modifier.<T>none(type));
+      modifications.put(type, new LinkedList<Modifier<T, N>>());
+      typeTotals.put(type, new ModifierTotal<T, N>(numeric));
     }
-    total = new ModifierTotal<>();
+    total = new ModifierTotal<>(numeric);
   }
   
-  public void add(Modifier<T> modifier) {
+  public void add(Modifier<T, N> modifier) {
     modifications.get(modifier.getModifierType()).add(modifier);
-    typeTotals.put(modifier.getModifierType(), typeTotals.get(modifier.getModifierType()).add(modifier));
+    typeTotals.get(modifier.getModifierType()).add(modifier);
     total.add(modifier);
   }
   
-  public void remove(Modifier<T> modifier) {
+  public void remove(Modifier<T, N> modifier) {
     Preconditions.checkArgument(modifications.containsKey(modifier));
     modifications.get(modifier.getModifierType()).remove(modifier);
-    typeTotals.put(modifier.getModifierType(), typeTotals.get(modifier.getModifierType()).subtract(modifier));
+    typeTotals.get(modifier.getModifierType()).subtract(modifier);
     total.subtract(modifier);
   }
   
-  public Integer getTotal(T type) {
+  public N getTotal(T type) {
     return total.get(type);
   }
   
-  public Integer getTypeTotal(T type, ModifierType modType) {
+  public N getTypeTotal(T type, ModifierType modType) {
     return typeTotals.get(modType).get(type);
   }
 

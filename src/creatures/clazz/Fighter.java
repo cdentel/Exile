@@ -47,7 +47,7 @@ public class Fighter extends Clazz {
   
 
   @Override
-  public Modifier<DefenseType> getDefenseModifier() {
+  public Modifier<DefenseType, Integer> getDefenseModifier() {
     return Modifier.of(ModifierType.CLAZZ, DefenseType.FORTITUDE, 2);
   }
 

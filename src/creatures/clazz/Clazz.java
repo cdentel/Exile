@@ -17,7 +17,7 @@ public abstract class Clazz {
   
   public abstract ClazzType getClassType();
   
-  public abstract Modifier<DefenseType> getDefenseModifier();
+  public abstract Modifier<DefenseType, Integer> getDefenseModifier();
   
   public abstract int getHealingSurges();
   

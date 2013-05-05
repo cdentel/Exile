@@ -3,13 +3,11 @@ package mechanics.modifier;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
 
-public class Modifier<T extends Enum<T>> {
+public class Modifier<T extends Enum<T>, N extends Number> {
   
-   private final ImmutableMap<T, Integer> modifiers;
+   private final ImmutableMap<T, N> modifiers;
    private final ModifierType modType;
    
    private Modifier(ModifierType modType) {
@@ -17,7 +15,7 @@ public class Modifier<T extends Enum<T>> {
      modifiers = ImmutableMap.of();
    }
    
-   private Modifier(ModifierType modType, Map<T, Integer> map) {
+   private Modifier(ModifierType modType, Map<T, N> map) {
      modifiers = ImmutableMap.copyOf(map);
      this.modType = modType;
    }
@@ -26,47 +24,28 @@ public class Modifier<T extends Enum<T>> {
      return modType;
    }
    
-    public Modifier<T> and(T type, int amount) {
-      return new Modifier<T>(getModifierType(),
-          ImmutableMap.<T, Integer>builder()
+    public Modifier<T, N> and(T type, N amount) {
+      return new Modifier<T, N>(getModifierType(),
+          ImmutableMap.<T, N>builder()
             .putAll(modifiers)
             .put(type, amount)
           .build());
     }
     
-    public Modifier<T> add(Modifier<T> other) {
-      Preconditions.checkNotNull(other);
-      Preconditions.checkArgument(other.getModifierType().equals(this.getModifierType()));
-      Builder<T, Integer> builder = ImmutableMap.<T, Integer>builder().putAll(modifiers);
-      for(T type : other.modifiers.keySet()) {
-        builder.put(type, get(type) + other.get(type));
-      }
-      return new Modifier<T>(getModifierType(), builder.build());
-    }
-    
-    public Modifier<T> subtract(Modifier<T> other) {
-      Preconditions.checkNotNull(other);
-      Preconditions.checkArgument(other.getModifierType().equals(this.getModifierType()));
-      Builder<T, Integer> builder = ImmutableMap.<T, Integer>builder().putAll(modifiers);
-      for(T type : other.modifiers.keySet()) {
-        builder.put(type, get(type) - other.get(type));
-      }
-      return new Modifier<T>(getModifierType(), builder.build());
-    }
     public Set<T> getModified() {
       return modifiers.keySet();
     }
     
     
-    public int get(T type) {
-      return modifiers.containsKey(type) ? modifiers.get(type): 0;
+    public N get(T type) {
+      return modifiers.containsKey(type) ? modifiers.get(type): null;
     }
     
-    public static <H extends Enum<H>> Modifier<H> of(ModifierType modType, H type, int value) {
-      return new Modifier<H>(modType, ImmutableMap.of(type, value));
+    public static <H extends Enum<H>, N extends Number> Modifier<H, N> of(ModifierType modType, H type, N value) {
+      return new Modifier<H, N>(modType, ImmutableMap.of(type, value));
     }
     
-    public static <H extends Enum<H>> Modifier<H> none(ModifierType modType) {
-      return new Modifier<H>(modType);
+    public static <H extends Enum<H>, N extends Number> Modifier<H, N> none(ModifierType modType) {
+      return new Modifier<H, N>(modType);
     }
   }

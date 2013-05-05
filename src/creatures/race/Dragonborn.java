@@ -46,7 +46,7 @@ public class Dragonborn extends Race {
   }
   
   @Override
-  public Modifier<AttributeType> getAbilityScoreModifier() {
+  public Modifier<AttributeType, Integer> getAbilityScoreModifier() {
     return Modifier.of(ModifierType.RACE, AttributeType.STRENGTH, 2).and(AttributeType.CHARISMA, 2);
   }
 
@@ -61,7 +61,7 @@ public class Dragonborn extends Race {
   }
   
   @Override
-  public Modifier<SkillType> getSkillModifiers() {
+  public Modifier<SkillType, Integer> getSkillModifiers() {
     return Modifier.of(ModifierType.RACE, SkillType.HISTORY, 2).and(SkillType.INTIMIDATE, 2);
   }
 

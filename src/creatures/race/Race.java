@@ -22,13 +22,13 @@ public abstract class Race {
   
   public abstract int getSpeed();
   
-  public abstract Modifier<AttributeType> getAbilityScoreModifier();
+  public abstract Modifier<AttributeType, Integer> getAbilityScoreModifier();
   
-  public Modifier<DefenseType> getDefenseModifier() {
+  public Modifier<DefenseType, Integer> getDefenseModifier() {
     return Modifier.none(ModifierType.RACE);
   }
     
-  public Modifier<SkillType> getSkillModifiers() {
+  public Modifier<SkillType, Integer> getSkillModifiers() {
     return Modifier.none(ModifierType.RACE);
   }
   

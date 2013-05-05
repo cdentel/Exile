@@ -16,7 +16,7 @@ import creatures.components.Vision;
 // Complete
 public class Human extends Race {
   
-  private Modifier<AttributeType> bonusAttribute;
+  private Modifier<AttributeType, Integer> bonusAttribute;
   private Language languageChoice;
   
   public Human(Language choice, AttributeType bonus) {
@@ -41,7 +41,7 @@ public class Human extends Race {
   }
 
   @Override
-  public Modifier<DefenseType> getDefenseModifier() {
+  public Modifier<DefenseType, Integer> getDefenseModifier() {
     return Modifier
         .of(ModifierType.RACE, DefenseType.FORTITUDE, 1)
         .and(DefenseType.REFLEX, 1)
@@ -75,7 +75,7 @@ public class Human extends Race {
   }
 
   @Override
-  public Modifier<AttributeType> getAbilityScoreModifier() {
+  public Modifier<AttributeType, Integer> getAbilityScoreModifier() {
     return bonusAttribute;
   }
 }
