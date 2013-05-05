@@ -1,4 +1,4 @@
-package equipment;
+package equipment.weapon;
 
 public enum WeaponType {
   SIMPLE_MELEE, MILITARY_MELEE, SUPERIOR_MELEE, SIMPLE_RANGED, MILITARY_RANGED, SUPERIOR_RANGED;

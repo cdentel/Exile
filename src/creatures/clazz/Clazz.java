@@ -8,8 +8,8 @@ import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
 
-import equipment.WeaponType;
 import equipment.shield.ShieldType;
+import equipment.weapon.WeaponType;
 import equipment.wearable.ArmorType;
 
 public abstract class Clazz {

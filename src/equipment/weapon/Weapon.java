@@ -10,7 +10,6 @@ import creatures.Creature;
 import creatures.components.AttributeType;
 import equipment.EquipmentType;
 import equipment.Equippable;
-import equipment.WeaponType;
 
 public abstract class Weapon implements Equippable, DamageDealing {
   

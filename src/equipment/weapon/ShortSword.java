@@ -12,7 +12,6 @@ import com.google.common.collect.ImmutableSet;
 import creatures.components.AttributeType;
 import creatures.components.BurdenType;
 
-import equipment.WeaponType;
 
 public class ShortSword extends Weapon {
 

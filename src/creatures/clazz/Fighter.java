@@ -1,9 +1,9 @@
 package creatures.clazz;
 
-import static equipment.WeaponType.MILITARY_MELEE;
-import static equipment.WeaponType.MILITARY_RANGED;
-import static equipment.WeaponType.SIMPLE_MELEE;
-import static equipment.WeaponType.SIMPLE_RANGED;
+import static equipment.weapon.WeaponType.MILITARY_MELEE;
+import static equipment.weapon.WeaponType.MILITARY_RANGED;
+import static equipment.weapon.WeaponType.SIMPLE_MELEE;
+import static equipment.weapon.WeaponType.SIMPLE_RANGED;
 import static equipment.wearable.ArmorType.CHAIN;
 import static equipment.wearable.ArmorType.CLOTH;
 import static equipment.wearable.ArmorType.HIDE;
@@ -24,8 +24,8 @@ import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
 
-import equipment.WeaponType;
 import equipment.shield.ShieldType;
+import equipment.weapon.WeaponType;
 import equipment.wearable.ArmorType;
 
 public class Fighter extends Clazz {

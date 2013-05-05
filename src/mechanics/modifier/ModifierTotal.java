@@ -37,7 +37,6 @@ public class ModifierTotal<T extends Enum<T>, N extends Number> {
           totals.put(type, numeric.subtract(null,  modifier.get(type)));
         }
       }
-      
     }
   }
   

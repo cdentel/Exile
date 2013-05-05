@@ -14,7 +14,6 @@ import creatures.components.AttributeType;
 import creatures.components.BurdenType;
 
 import equipment.EquipmentType;
-import equipment.WeaponType;
 
 public class Dagger extends Weapon {
 

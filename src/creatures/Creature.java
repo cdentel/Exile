@@ -17,8 +17,8 @@ import creatures.components.Language;
 import creatures.components.Vision;
 import creatures.race.Race;
 import equipment.Equipment;
-import equipment.WeaponType;
 import equipment.shield.ShieldType;
+import equipment.weapon.WeaponType;
 import equipment.wearable.ArmorType;
 
 
