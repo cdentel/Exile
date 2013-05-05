@@ -1,17 +1,13 @@
-import powers.dragonborn.DragonBreathOption;
-import equipment.Equipment;
-import equipment.shield.Shield;
-import equipment.shield.ShieldType;
-import equipment.weapon.Dagger;
-import equipment.weapon.Warhammer;
-import equipment.wearable.ArmorType;
-import equipment.wearable.Footwear;
-import equipment.wearable.Handwear;
-import equipment.wearable.Torso;
-import graphics.CreatureViewer;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
 import mechanics.DamageType;
+import mechanics.modifier.Modifier;
+import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 import mechanics.skills.TrainedSkills;
+import powers.dragonborn.DragonBreathOption;
 import creatures.Creature;
 import creatures.Hero;
 import creatures.Monster;
@@ -22,6 +18,16 @@ import creatures.components.Language;
 import creatures.race.Dragonborn;
 import creatures.race.Human;
 import creatures.race.Race;
+import equipment.Equipment;
+import equipment.shield.Shield;
+import equipment.shield.ShieldType;
+import equipment.weapon.Dagger;
+import equipment.weapon.Warhammer;
+import equipment.wearable.ArmorType;
+import equipment.wearable.Footwear;
+import equipment.wearable.Handwear;
+import equipment.wearable.Torso;
+import graphics.Map;
 
 
 public class Driver {
@@ -31,8 +37,14 @@ public class Driver {
    */
   public static void main(String[] args) {
     Creature creature = getMonster();
+    JFrame frame = new JFrame("Demo");
+    frame.setSize(600,400);
+    Map map = new Map();
+    frame.add(map);
+    frame.setVisible(true);
+    frame.getGraphics().fillRect(100, 100, 10, 10);
     
-    CreatureViewer viewer = new CreatureViewer(creature);
+    //CreatureViewer viewer = new CreatureViewer(creature);
     
     /*
     Hero h = getHero();
@@ -62,7 +74,13 @@ public class Driver {
         .build();
     
     Hero h =  new Hero(race, clazz, skills);
-    h.attributes().set(10, 14, 11, 8, 18, 10);
+    h.attributes().add(Modifier
+        .of(ModifierType.BASE, AttributeType.CHARISMA, 10)
+        .and(AttributeType.CONSTITUTION, 14)
+        .and(AttributeType.DEXTERITY, 11)
+        .and(AttributeType.INTELLIGENCE, 8)
+        .and(AttributeType.STRENGTH, 18)
+        .and(AttributeType.WISDOM, 10));
     Equipment e = h.equipment();
     e.setTorso(new Torso(ArmorType.CHAIN));
     e.setFootwear(new Footwear(ArmorType.CHAIN));
@@ -82,7 +100,13 @@ public class Driver {
       .chooseClazzSkill(SkillType.INTIMIDATE)
       .build();
     Monster g = new Monster(race, clazz, skills);
-    g.attributes().set(8, 14, 18, 11, 10, 10);
+    g.attributes().add(Modifier
+        .of(ModifierType.BASE, AttributeType.CHARISMA, 8)
+        .and(AttributeType.CONSTITUTION, 14)
+        .and(AttributeType.DEXTERITY, 18)
+        .and(AttributeType.INTELLIGENCE, 11)
+        .and(AttributeType.STRENGTH, 10)
+        .and(AttributeType.WISDOM, 10));
     Equipment e = g.equipment();
     e.setTorso(new Torso(ArmorType.LEATHER));
     e.setHandwear(new Handwear(ArmorType.LEATHER));

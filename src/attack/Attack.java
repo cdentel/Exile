@@ -1,7 +1,6 @@
 package attack;
 
 import mechanics.Damage;
-import mechanics.defenses.Defense;
 import mechanics.dice.Die;
 import creatures.Creature;
 
@@ -18,7 +17,7 @@ public abstract class Attack {
   
   public abstract int getAttackModifier();
   
-  public abstract Defense getDefense();
+  public abstract int getDefense();
   
   
   public void execute() {
@@ -35,7 +34,7 @@ public abstract class Attack {
   }
   
   public boolean attackLandsWithRoll(int roll) {
-    return getAttackModifier() + roll > getDefense().getScore();
+    return getAttackModifier() + roll > getDefense();
   }
   
   public abstract Damage getDamage();

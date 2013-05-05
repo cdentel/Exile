@@ -32,7 +32,7 @@ public class Skill {
   }
   
   public int getModifierPlusHalfLevel() {
-    return creature.attributes().get(type.attribute).getModifierPlusHalfLevel();
+    return creature.attributes().getModifier(type.attribute) + creature.getLevel()/ 2;
   }
   
   public int getArmorPenalty() {

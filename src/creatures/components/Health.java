@@ -25,13 +25,13 @@ public class Health {
     return
           // Base + level
           creature.getClazz().getBaseHitPointsAtLevel(creature.getLevel())
-        + creature.attributes().get(CONSTITUTION).getScore();
+        + creature.attributes().get(CONSTITUTION);
   }
   
   public int getMaxHealingSurges() {
     return 
         creature.getClazz().getHealingSurges()
-      + creature.attributes().get(CONSTITUTION).getModifier();
+      + creature.attributes().getModifier(CONSTITUTION);
   }
   
   public int getCurrentHp() {
@@ -53,7 +53,7 @@ public class Health {
   public int surgeValue() {
     // Draconic Heritage
     if(creature.getRace().hasDraconicHeritage()) {
-      return getMaxHp() / 4 + creature.attributes().get(CONSTITUTION).getModifier();
+      return getMaxHp() / 4 + creature.attributes().getModifier(CONSTITUTION);
     }
     return getMaxHp() / 4;
   }

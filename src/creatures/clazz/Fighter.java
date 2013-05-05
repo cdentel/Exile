@@ -17,8 +17,9 @@ import static mechanics.skills.SkillType.STREETWISE;
 
 import java.util.Set;
 
-import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
+import mechanics.modifier.Modifier;
+import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
@@ -47,7 +48,7 @@ public class Fighter extends Clazz {
 
   @Override
   public Modifier<DefenseType> getDefenseModifier() {
-    return Modifier.with(DefenseType.FORTITUDE, 2);
+    return Modifier.of(ModifierType.CLAZZ, DefenseType.FORTITUDE, 2);
   }
 
   @Override

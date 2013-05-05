@@ -1,7 +1,6 @@
 package attack;
 
 import mechanics.Damage;
-import mechanics.defenses.Defense;
 import creatures.Creature;
 import equipment.weapon.Weapon;
 
@@ -17,7 +16,7 @@ public class MeleeBasicAttack extends Attack {
           // Weapon Modifier
           damager.getAttackRollModifier()
           // The relevant attribute modifier
-        + attacker.attributes().get(damager.getAttributeUsed()).getModifier();
+        + attacker.attributes().getModifier(damager.getAttributeUsed());
   }
 
   @Override
@@ -26,8 +25,8 @@ public class MeleeBasicAttack extends Attack {
   }
 
   @Override
-  public Defense getDefense() {
-    return opponent.defenses().getDefense(damager.getDefenseType());
+  public int getDefense() {
+    return opponent.defenses().get(damager.getDefenseType());
   }
   
 

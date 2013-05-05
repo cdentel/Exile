@@ -34,7 +34,7 @@ public class DragonBreath extends AttackPower {
   public Damage getDamage() {
     return Damage.of(
         option.getChosenDamageType(), 
-        attackerAttributes.get(AttributeType.CONSTITUTION).getModifier(), 
+        attackerAttributes.getModifier(AttributeType.CONSTITUTION), 
         Dice.with(Die.d6));
   }
 

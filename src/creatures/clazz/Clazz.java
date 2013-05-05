@@ -2,8 +2,8 @@ package creatures.clazz;
 
 import java.util.Set;
 
-import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
+import mechanics.modifier.Modifier;
 import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;

@@ -1,12 +1,12 @@
 package creatures.race;
 
+import mechanics.defenses.DefenseType;
+import mechanics.modifier.Modifier;
+import mechanics.modifier.ModifierType;
+import mechanics.skills.SkillType;
+
 import com.google.common.collect.ImmutableSet;
 
-import mechanics.Choice;
-import mechanics.Modifier;
-import mechanics.ModifierChoice;
-import mechanics.defenses.DefenseType;
-import mechanics.skills.SkillType;
 import creatures.components.AttributeType;
 import creatures.components.CreatureSize;
 import creatures.components.Language;
@@ -25,11 +25,11 @@ public abstract class Race {
   public abstract Modifier<AttributeType> getAbilityScoreModifier();
   
   public Modifier<DefenseType> getDefenseModifier() {
-    return Modifier.none();
+    return Modifier.none(ModifierType.RACE);
   }
     
   public Modifier<SkillType> getSkillModifiers() {
-    return Modifier.none();
+    return Modifier.none(ModifierType.RACE);
   }
   
   public int getCreationClassSkillChoices() {

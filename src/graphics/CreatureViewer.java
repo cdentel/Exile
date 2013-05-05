@@ -6,13 +6,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 
 import javax.swing.JFrame;
 
 import mechanics.defenses.DefenseType;
+import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 import creatures.Creature;
 import creatures.components.AttributeType;
@@ -79,12 +79,12 @@ public class CreatureViewer extends JFrame {
 
     for(AttributeType a : AttributeType.values()) {
       constraints.gridy++;
-      addTo(new Label("" + creature.attributes().get(a).getScore()), attr, layout, constraints);
+      addTo(new Label("" + creature.attributes().get(a)), attr, layout, constraints);
       constraints.gridwidth = 2;
       addTo(new Label(a.toString()), attr, layout, constraints);
       constraints.gridwidth = 1;
-      addTo(new Label("" + creature.attributes().get(a).getModifier()), attr, layout, constraints);
-      addTo(new Label("" + creature.attributes().get(a).getModifierPlusHalfLevel()), attr, layout, constraints);
+      addTo(new Label("" + creature.attributes().getModifier(a)), attr, layout, constraints);
+      addTo(new Label("" + creature.attributes().getModifier(a) + creature.getLevel() / 2), attr, layout, constraints);
     }
     attr.setPreferredSize(new Dimension(400, 450));
     return attr;
@@ -112,18 +112,18 @@ public class CreatureViewer extends JFrame {
     addTo(new Label("Class"), defenses, layout, constraints);
     for(DefenseType d : DefenseType.values()) {
       constraints.gridy++;
-      addTo(new Label("" + creature.defenses().getDefense(d).getScore()), defenses, layout, constraints);
+      addTo(new Label("" + creature.defenses().get(d)), defenses, layout, constraints);
       constraints.gridwidth = 2;
       addTo(new Label(d.getAbbreviation()), defenses, layout, constraints);
       constraints.gridwidth = 1;
       addTo(
           d.equals(DefenseType.AC) 
-            ? new Label("" + creature.defenses().getDefense(d).getArmor())
+            ? new Label("" + creature.defenses().get(d))
             : new Label("0"), defenses, layout, constraints);
-      addTo(new Label("" + creature.defenses().getDefense(d).getAbility()), defenses, layout, constraints);
-      addTo(new Label("" + creature.defenses().getDefense(d).getHalfLevel()), defenses, layout, constraints);
-      addTo(new Label("" + creature.defenses().getDefense(d).getRaceBonus()), defenses, layout, constraints);
-      addTo(new Label("" + creature.defenses().getDefense(d).getClassBonus()), defenses, layout, constraints);
+      addTo(new Label("" + creature.defenses().get(d, ModifierType.ATTRIBUTE)), defenses, layout, constraints);
+      addTo(new Label("" + creature.getLevel()/2), defenses, layout, constraints);
+      addTo(new Label("" + creature.defenses().get(d, ModifierType.RACE)), defenses, layout, constraints);
+      addTo(new Label("" + creature.defenses().get(d, ModifierType.CLAZZ)), defenses, layout, constraints);
     }
     defenses.setPreferredSize(new Dimension(400, 450));
     return defenses;
@@ -179,15 +179,15 @@ public class CreatureViewer extends JFrame {
     addTo(new Label("Armr"), skills, layout, constraints);
     for(SkillType type : SkillType.values()) {
       constraints.gridy++;
-      addTo(new Label("" + creature.getSkills().getSkill(type).getScore()), skills, layout, constraints);
+      addTo(new Label("" + creature.getSkills().get(type)), skills, layout, constraints);
       constraints.gridwidth = 3;
       addTo(new Label(type.toString()), skills, layout, constraints);
       addTo(new Label(type.attribute.getAbbreviation()), skills, layout, constraints);
       constraints.gridwidth = 1;
-      addTo(new Label("" + creature.getSkills().getSkill(type).getModifierPlusHalfLevel()), skills, layout, constraints);
-      addTo(new Label("" + creature.getSkills().getSkill(type).getTrained()), skills, layout, constraints);
-      addTo(new Label("" + creature.getSkills().getSkill(type).getRaceModifier()), skills, layout, constraints);
-      addTo(new Label("" + creature.getSkills().getSkill(type).getArmorPenalty()), skills, layout, constraints);
+      addTo(new Label("" + creature.getSkills().get(type, ModifierType.ATTRIBUTE) + creature.getLevel()/2), skills, layout, constraints);
+      addTo(new Label("" + creature.getSkills().get(type, ModifierType.TRAINED)), skills, layout, constraints);
+      addTo(new Label("" + creature.getSkills().get(type, ModifierType.RACE)), skills, layout, constraints);
+      addTo(new Label("" + creature.getSkills().get(type, ModifierType.ARMOR)), skills, layout, constraints);
     }
     skills.setPreferredSize(new Dimension(400, 450));
     return skills;

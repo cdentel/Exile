@@ -1,7 +1,8 @@
 package creatures.race;
 
-import mechanics.Modifier;
 import mechanics.defenses.DefenseType;
+import mechanics.modifier.Modifier;
+import mechanics.modifier.ModifierType;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
@@ -21,7 +22,7 @@ public class Human extends Race {
   public Human(Language choice, AttributeType bonus) {
     Preconditions.checkArgument(!choice.equals(Language.COMMON));
     this.languageChoice = choice;
-    this.bonusAttribute = Modifier.with(bonus, 2);
+    this.bonusAttribute = Modifier.of(ModifierType.RACE, bonus, 2);
   }
 
   @Override
@@ -42,7 +43,7 @@ public class Human extends Race {
   @Override
   public Modifier<DefenseType> getDefenseModifier() {
     return Modifier
-        .with(DefenseType.FORTITUDE, 1)
+        .of(ModifierType.RACE, DefenseType.FORTITUDE, 1)
         .and(DefenseType.REFLEX, 1)
         .and(DefenseType.WILL, 1);
   }

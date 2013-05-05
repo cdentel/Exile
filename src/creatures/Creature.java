@@ -8,7 +8,6 @@ import mechanics.skills.TrainedSkills;
 import attack.Attack;
 import attack.MeleeBasicAttack;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 
 import creatures.clazz.Clazz;
@@ -39,20 +38,23 @@ public abstract class Creature {
   
   protected Skills skills;
   
+  protected  Defenses defenses;
+  
   public abstract String getName();
   
   
   public Creature(Race race, Clazz clazz, TrainedSkills trainedSkills) {
     this.clazz = clazz;
     this.race = race;
-    attributes = new Attributes(this);
+    attributes = new Attributes();
     health = new Health(this);
     equipment = new Equipment(this);
-    skills = new Skills(this, trainedSkills);
+    skills = new Skills();
+    defenses = new Defenses();
   }
   
   public Defenses defenses() {
-    return Defenses.of(this);
+    return defenses;
   }
   
   public Attack attack(Creature opponent) {
