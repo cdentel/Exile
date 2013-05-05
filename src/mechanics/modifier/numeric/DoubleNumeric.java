@@ -1,11 +1,11 @@
 package mechanics.modifier.numeric;
 
-public class IntegerNumeric implements Numeric<Integer> {
+public class DoubleNumeric implements Numeric<Double> {
   
-  private IntegerNumeric() {}
-  
+  private DoubleNumeric() {}
+
   @Override
-  public Integer add(Integer n1, Integer n2) {
+  public Double add(Double n1, Double n2) {
     if (n1 == null && n2 == null) {
       return zero();
     } else if (n1 == null || n2 == null) {
@@ -16,7 +16,7 @@ public class IntegerNumeric implements Numeric<Integer> {
   }
 
   @Override
-  public Integer subtract(Integer n1, Integer n2) {
+  public Double subtract(Double n1, Double n2) {
     if (n1 == null && n2 == null) {
       return zero();
     } else if (n1 == null || n2 == null) {
@@ -27,13 +27,13 @@ public class IntegerNumeric implements Numeric<Integer> {
   }
 
   @Override
-  public Integer zero() {
-    return 0;
+  public Double zero() {
+    return 0.d;
   }
   
-  private static IntegerNumeric INSTANCE = new IntegerNumeric();
+  public static DoubleNumeric INSTANCE = new DoubleNumeric();
   
-  public static Numeric<Integer> INSTANCE() {
+  public static Numeric<Double> INSTANCE() {
     return INSTANCE;
   }
 
