@@ -3,6 +3,7 @@ package mechanics.modifier;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableMap;
 
 public class Modifier<T extends Enum<T>, N extends Number> {
@@ -34,6 +35,21 @@ public class Modifier<T extends Enum<T>, N extends Number> {
     
     public Set<T> getModified() {
       return modifiers.keySet();
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+      if(!(other instanceof Modifier)) {
+        return false;
+      }
+      @SuppressWarnings("rawtypes")
+      Modifier mod = (Modifier) other;
+      return modifiers.equals(mod.modifiers) && modType.equals(mod.modType);
+    }
+    
+    @Override
+    public int hashCode() {
+      return Objects.hashCode(modifiers, modType);
     }
     
     

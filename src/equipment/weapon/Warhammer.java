@@ -4,18 +4,21 @@ import mechanics.Damage;
 import mechanics.defenses.DefenseType;
 import mechanics.dice.Dice;
 import mechanics.dice.Die;
+import mechanics.modifier.Modifier;
+import mechanics.modifier.ModifierType;
 
 import com.google.common.collect.ImmutableSet;
 
 import creatures.components.AttributeType;
+import creatures.components.BurdenType;
 
 import equipment.WeaponType;
 
 public class Warhammer extends Weapon {
 
   @Override
-  public int getWeight() {
-    return 5;
+  public Modifier<BurdenType, Integer> getBurdenModifier() {
+    return Modifier.of(ModifierType.WEAPON, BurdenType.WEIGHT, 5);
   }
 
   @Override

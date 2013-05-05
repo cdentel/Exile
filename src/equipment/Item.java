@@ -1,6 +1,9 @@
 package equipment;
 
+import mechanics.modifier.Modifier;
+import creatures.components.BurdenType;
+
 public interface Item {
 
-  public int getWeight();
+  public Modifier<BurdenType, Integer> getBurdenModifier();
 }

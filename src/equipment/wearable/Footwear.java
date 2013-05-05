@@ -1,5 +1,7 @@
 package equipment.wearable;
 
+import equipment.EquipmentType;
+
 
 public class Footwear extends Wearable {
   
@@ -27,6 +29,11 @@ public class Footwear extends Wearable {
   @Override
   public double getWeightMultiplier() {
     return .25;
+  }
+
+  @Override
+  public EquipmentType getEquipmentType() {
+    return EquipmentType.FOOTWEAR;
   }
 
 }

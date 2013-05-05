@@ -4,19 +4,19 @@ import static mechanics.dice.Die.d4;
 import mechanics.Damage;
 import mechanics.defenses.DefenseType;
 import mechanics.dice.Dice;
+import mechanics.modifier.Modifier;
+import mechanics.modifier.ModifierType;
 
 import com.google.common.collect.ImmutableSet;
 
+import creatures.Creature;
 import creatures.components.AttributeType;
+import creatures.components.BurdenType;
 
+import equipment.EquipmentType;
 import equipment.WeaponType;
 
 public class Dagger extends Weapon {
-
-  @Override
-  public int getWeight() {
-    return 1;
-  }
 
   @Override
   public Damage getDamage() {
@@ -48,4 +48,8 @@ public class Dagger extends Weapon {
     return ImmutableSet.of(WeaponGroup.LIGHT_BLADE);
   }
 
+  @Override
+  public Modifier<BurdenType, Integer> getBurdenModifier() {
+    return Modifier.of(ModifierType.WEAPON, BurdenType.WEIGHT, 1);
+  }
 }

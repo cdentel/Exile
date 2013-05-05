@@ -1,5 +1,7 @@
 package equipment.wearable;
 
+import equipment.EquipmentType;
+
 public class Handwear extends Wearable {
   
   private ArmorType materialType;
@@ -26,6 +28,11 @@ public class Handwear extends Wearable {
   @Override
   public double getWeightMultiplier() {
     return .15;
+  }
+
+  @Override
+  public EquipmentType getEquipmentType() {
+    return EquipmentType.HANDWEAR;
   }
 
 }

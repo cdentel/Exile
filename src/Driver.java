@@ -1,16 +1,3 @@
-import equipment.Equipment;
-import equipment.shield.Shield;
-import equipment.shield.ShieldType;
-import equipment.weapon.Dagger;
-import equipment.weapon.Warhammer;
-import equipment.wearable.ArmorType;
-import equipment.wearable.Footwear;
-import equipment.wearable.Handwear;
-import equipment.wearable.Torso;
-import graphics.Map;
-
-import javax.swing.JFrame;
-
 import mechanics.DamageType;
 import mechanics.modifier.Modifier;
 import mechanics.modifier.ModifierType;
@@ -27,6 +14,15 @@ import creatures.components.Language;
 import creatures.race.Dragonborn;
 import creatures.race.Human;
 import creatures.race.Race;
+import equipment.Equipment;
+import equipment.shield.Shield;
+import equipment.shield.ShieldType;
+import equipment.weapon.Dagger;
+import equipment.weapon.Warhammer;
+import equipment.wearable.ArmorType;
+import equipment.wearable.Footwear;
+import equipment.wearable.Handwear;
+import equipment.wearable.Torso;
 
 
 public class Driver {
@@ -36,12 +32,6 @@ public class Driver {
    */
   public static void main(String[] args) {
     Creature creature = getMonster();
-    JFrame frame = new JFrame("Demo");
-    frame.setSize(600,400);
-    Map map = new Map();
-    frame.add(map);
-    frame.setVisible(true);
-    frame.getGraphics().fillRect(100, 100, 10, 10);
     
     //CreatureViewer viewer = new CreatureViewer(creature);
     
@@ -81,11 +71,11 @@ public class Driver {
         .and(AttributeType.STRENGTH, 18)
         .and(AttributeType.WISDOM, 10));
     Equipment e = h.equipment();
-    e.setTorso(new Torso(ArmorType.CHAIN));
-    e.setFootwear(new Footwear(ArmorType.CHAIN));
-    e.setHandwear(new Handwear(ArmorType.CHAIN));
-    e.setLeftHand(new Shield(ShieldType.HEAVY));
-    e.setRightHand(new Warhammer());
+    e.equip(new Torso(ArmorType.CHAIN));
+    e.equip(new Footwear(ArmorType.CHAIN));
+    e.equip(new Handwear(ArmorType.CHAIN));
+    e.equip(new Shield(ShieldType.HEAVY));
+    e.equip(new Warhammer());
     return h;
   }
   
@@ -107,10 +97,10 @@ public class Driver {
         .and(AttributeType.STRENGTH, 10)
         .and(AttributeType.WISDOM, 10));
     Equipment e = g.equipment();
-    e.setTorso(new Torso(ArmorType.LEATHER));
-    e.setHandwear(new Handwear(ArmorType.LEATHER));
-    e.setFootwear(new Footwear(ArmorType.LEATHER));
-    e.setRightHand(new Dagger());
+    e.equip(new Torso(ArmorType.LEATHER));
+    e.equip(new Handwear(ArmorType.LEATHER));
+    e.equip(new Footwear(ArmorType.LEATHER));
+    e.equip(new Dagger());
     return g;
 
   }

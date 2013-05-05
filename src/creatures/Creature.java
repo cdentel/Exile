@@ -6,12 +6,12 @@ import mechanics.defenses.Defenses;
 import mechanics.skills.Skills;
 import mechanics.skills.TrainedSkills;
 import attack.Attack;
-import attack.MeleeBasicAttack;
 
 import com.google.common.collect.ImmutableSet;
 
 import creatures.clazz.Clazz;
 import creatures.components.Attributes;
+import creatures.components.Burden;
 import creatures.components.Health;
 import creatures.components.Language;
 import creatures.components.Vision;
@@ -40,6 +40,8 @@ public abstract class Creature {
   
   protected  Defenses defenses;
   
+  protected Burden burden;
+  
   public abstract String getName();
   
   
@@ -53,13 +55,18 @@ public abstract class Creature {
     defenses = new Defenses();
   }
   
+  public Burden burden() {
+    return burden;
+  }
+  
   public Defenses defenses() {
     return defenses;
   }
   
   public Attack attack(Creature opponent) {
+    throw new UnsupportedOperationException();
     //if(equipment.getRightHand().isPresent()) {
-      return new MeleeBasicAttack(this, opponent, equipment.getRightHand().get());
+      //return new MeleeBasicAttack(this, opponent, equipment.get(EquipmentType.WEAPON).get());
     //} else {
       
     //}
