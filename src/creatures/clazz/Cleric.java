@@ -2,9 +2,9 @@ package creatures.clazz;
 
 import java.util.Set;
 
+import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
 import mechanics.modifier.Modifier;
-import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
@@ -22,7 +22,7 @@ public class Cleric extends Clazz {
 
   @Override
   public Modifier<DefenseType, Integer> getDefenseModifier() {
-    return Modifier.of(ModifierType.CLAZZ, DefenseType.WILL, 2);
+    return Modifier.of(BonusSource.CLAZZ, DefenseType.WILL, 2);
   }
 
   @Override

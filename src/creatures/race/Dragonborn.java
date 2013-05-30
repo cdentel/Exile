@@ -1,7 +1,7 @@
 package creatures.race;
 
+import mechanics.BonusSource;
 import mechanics.modifier.Modifier;
-import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 import powers.dragonborn.DragonBreathOption;
 
@@ -47,7 +47,7 @@ public class Dragonborn extends Race {
   
   @Override
   public Modifier<AttributeType, Integer> getAbilityScoreModifier() {
-    return Modifier.of(ModifierType.RACE, AttributeType.STRENGTH, 2).and(AttributeType.CHARISMA, 2);
+    return Modifier.of(BonusSource.RACE, AttributeType.STRENGTH, 2).and(AttributeType.CHARISMA, 2);
   }
 
   @Override
@@ -56,13 +56,8 @@ public class Dragonborn extends Race {
   }
   
   @Override
-  public boolean hasDraconicHeritage() {
-    return true;
-  }
-  
-  @Override
   public Modifier<SkillType, Integer> getSkillModifiers() {
-    return Modifier.of(ModifierType.RACE, SkillType.HISTORY, 2).and(SkillType.INTIMIDATE, 2);
+    return Modifier.of(BonusSource.RACE, SkillType.HISTORY, 2).and(SkillType.INTIMIDATE, 2);
   }
 
 }

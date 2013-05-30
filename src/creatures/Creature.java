@@ -2,12 +2,13 @@ package creatures;
 import java.util.Set;
 
 import mechanics.EvaluatedDamage;
+import mechanics.ProficiencySet;
 import mechanics.defenses.Defenses;
 import mechanics.skills.Skills;
 import mechanics.skills.TrainedSkills;
 import attack.Attack;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 import creatures.clazz.Clazz;
 import creatures.components.Attributes;
@@ -26,33 +27,41 @@ public abstract class Creature {
     
   protected int xp;
   
-  protected Attributes attributes;
+  protected Attributes attributes = new Attributes();
   
-  protected Equipment equipment;
+  protected Health health = new Health();
+  
+  protected Skills skills = new Skills();
+  
+  protected  Defenses defenses = new Defenses();
+  
+  protected Burden burden = new Burden();
+  
+  protected ProficiencySet<ShieldType> shieldProficiencies = ProficiencySet.create();
+  
+  protected ProficiencySet<ArmorType> armorProficiencies = ProficiencySet.create();
+  
+  protected ProficiencySet<WeaponType> weaponProficiencies = ProficiencySet.create();
+  
+  protected ProficiencySet<Vision> vision = ProficiencySet.create();
+  
+  protected ProficiencySet<Language> languages = ProficiencySet.create();
   
   protected Race race;
   
   protected Clazz clazz;
   
-  protected Health health;
-  
-  protected Skills skills;
-  
-  protected  Defenses defenses;
-  
-  protected Burden burden;
-  
+  protected Equipment equipment;
+
   public abstract String getName();
   
   
-  public Creature(Race race, Clazz clazz, TrainedSkills trainedSkills) {
+  public Creature(Race race, Clazz clazz) {
     this.clazz = clazz;
     this.race = race;
-    attributes = new Attributes();
-    health = new Health(this);
     equipment = new Equipment(this);
-    skills = new Skills();
-    defenses = new Defenses();
+    race.applyRaceBonuses(this);
+    clazz.applyClazzBonuses(this);
   }
   
   public Burden burden() {
@@ -104,28 +113,28 @@ public abstract class Creature {
     return attributes;
   }
   
-  public Set<WeaponType> getWeaponProficiencies() {
-    return getClazz().getWeaponProficiencies();
+  public ProficiencySet<WeaponType> weaponProficiencies() {
+    return weaponProficiencies;
   }
   
-  public Set<ArmorType> getArmorProficiencies() {
-    return getClazz().getArmorProficiencies();
+  public ProficiencySet<ArmorType> armorProficiencies() {
+    return armorProficiencies;
   }
   
-  public Set<ShieldType> getShieldProficiencies() {
-    return getClazz().getShieldProficiencies();
+  public ProficiencySet<ShieldType> shieldProficiencies() {
+    return shieldProficiencies;
   }
   
-  public Vision getVision() {
-    return race.getVision();
+  public ProficiencySet<Vision> vision() {
+    return vision;
   }
   
   public Skills getSkills() {
     return skills;
   }
   
-  public ImmutableSet<Language> getLanguages() {
-    return race.getLanguages();
+  public ProficiencySet<Language> languages() {
+    return languages;
   }
 
 }

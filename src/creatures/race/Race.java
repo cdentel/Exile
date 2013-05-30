@@ -1,13 +1,15 @@
 package creatures.race;
 
+import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
 import mechanics.modifier.Modifier;
-import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
 
+import creatures.Creature;
 import creatures.components.AttributeType;
+import creatures.components.BurdenType;
 import creatures.components.CreatureSize;
 import creatures.components.Language;
 import creatures.components.Vision;
@@ -25,11 +27,11 @@ public abstract class Race {
   public abstract Modifier<AttributeType, Integer> getAbilityScoreModifier();
   
   public Modifier<DefenseType, Integer> getDefenseModifier() {
-    return Modifier.none(ModifierType.RACE);
+    return Modifier.none(BonusSource.RACE);
   }
     
   public Modifier<SkillType, Integer> getSkillModifiers() {
-    return Modifier.none(ModifierType.RACE);
+    return Modifier.none(BonusSource.RACE);
   }
   
   public int getCreationClassSkillChoices() {
@@ -46,12 +48,26 @@ public abstract class Race {
   
   public abstract ImmutableSet<Language> getLanguages();
   
-  public boolean hasDraconicHeritage() {
-    return false;
-  }
-
   public int getCreationBonusSkillChoices() {
     return 0;
+  }
+  
+  public void applyRaceBonuses(Creature c) {
+    c.vision().add(getVision(), BonusSource.RACE);
+    c.burden().add(Modifier.of(BonusSource.RACE, BurdenType.MOVEMENT, getSpeed()));
+    c.attributes().add(getAbilityScoreModifier());
+    c.defenses().add(getDefenseModifier());
+    c.getSkills().add(getSkillModifiers());
+    c.languages().addAll(getLanguages(), BonusSource.RACE);
+  }
+  
+  public void removeRaceBonuses(Creature c) {
+    c.vision().remove(getVision(), BonusSource.RACE);
+    c.burden().remove(Modifier.of(BonusSource.RACE, BurdenType.MOVEMENT, getSpeed()));
+    c.attributes().remove(getAbilityScoreModifier());
+    c.defenses().remove(getDefenseModifier());
+    c.getSkills().remove(getSkillModifiers());
+    c.languages().removeAll(getLanguages(), BonusSource.RACE);
   }
 
 }

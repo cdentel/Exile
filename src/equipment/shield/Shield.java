@@ -1,8 +1,8 @@
 package equipment.shield;
 
+import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
 import mechanics.modifier.Modifier;
-import mechanics.modifier.ModifierType;
 import creatures.Creature;
 import creatures.components.BurdenType;
 import equipment.EquipmentType;
@@ -22,11 +22,11 @@ public class Shield implements Equippable {
   
   @Override
   public Modifier<BurdenType, Integer> getBurdenModifier() {
-    return Modifier.of(ModifierType.SHIELD, BurdenType.WEIGHT, size.weight);
+    return Modifier.of(BonusSource.SHIELD, BurdenType.WEIGHT, size.weight);
   }
   
   public Modifier<DefenseType, Integer> getDefenseModifier() {
-    return Modifier.of(ModifierType.SHIELD, DefenseType.AC, size.armorBonus);
+    return Modifier.of(BonusSource.SHIELD, DefenseType.AC, size.armorBonus);
   }
 
   public int getMovementModifier() {
@@ -54,6 +54,6 @@ public class Shield implements Equippable {
 
   @Override
   public boolean canBeEquippedBy(Creature c) {
-    return c.getShieldProficiencies().contains(getShieldType());
+    return c.shieldProficiencies().contains(getShieldType());
   }
 }

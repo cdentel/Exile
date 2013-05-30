@@ -11,8 +11,8 @@ public class Monster extends Creature {
   }
 
   
-  public Monster(Race race, Clazz clazz, TrainedSkills skills) {
-    super(race, clazz, skills);
+  public Monster(Race race, Clazz clazz) {
+    super(race, clazz);
   }
   
 

@@ -1,5 +1,5 @@
-package mechanics.modifier;
+package mechanics;
 
-public enum ModifierType {
+public enum BonusSource{
   BASE, RACE, CLAZZ, ATTRIBUTE, ARMOR, TRAINED, WEAPON, SHIELD
 }

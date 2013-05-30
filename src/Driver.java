@@ -1,6 +1,6 @@
 import mechanics.DamageType;
+import mechanics.BonusSource;
 import mechanics.modifier.Modifier;
-import mechanics.modifier.ModifierType;
 import mechanics.skills.SkillType;
 import mechanics.skills.TrainedSkills;
 import powers.dragonborn.DragonBreathOption;
@@ -62,9 +62,9 @@ public class Driver {
         .chooseClazzSkill(SkillType.HEAL).chooseClazzSkill(SkillType.INTIMIDATE)
         .build();
     
-    Hero h =  new Hero(race, clazz, skills);
+    Hero h =  new Hero(race, clazz);
     h.attributes().add(Modifier
-        .of(ModifierType.BASE, AttributeType.CHARISMA, 10)
+        .of(BonusSource.BASE, AttributeType.CHARISMA, 10)
         .and(AttributeType.CONSTITUTION, 14)
         .and(AttributeType.DEXTERITY, 11)
         .and(AttributeType.INTELLIGENCE, 8)
@@ -88,9 +88,9 @@ public class Driver {
       .chooseClazzSkill(SkillType.ATHLETICS)
       .chooseClazzSkill(SkillType.INTIMIDATE)
       .build();
-    Monster g = new Monster(race, clazz, skills);
+    Monster g = new Monster(race, clazz);
     g.attributes().add(Modifier
-        .of(ModifierType.BASE, AttributeType.CHARISMA, 8)
+        .of(BonusSource.BASE, AttributeType.CHARISMA, 8)
         .and(AttributeType.CONSTITUTION, 14)
         .and(AttributeType.DEXTERITY, 18)
         .and(AttributeType.INTELLIGENCE, 11)

@@ -9,8 +9,8 @@ public class Hero extends Creature {
   public String getName() {
     return "Hero";
   }  
-  public Hero(Race race, Clazz clazz, TrainedSkills skills) {
-    super(race, clazz, skills);
+  public Hero(Race race, Clazz clazz) {
+    super(race, clazz);
   }
 
 }

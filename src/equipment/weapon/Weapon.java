@@ -42,7 +42,7 @@ public abstract class Weapon implements Equippable, DamageDealing {
 
   @Override
   public boolean canBeEquippedBy(Creature c) {
-    return c.getWeaponProficiencies().contains(getWeaponType());
+    return c.weaponProficiencies().contains(getWeaponType());
   }
   
 }

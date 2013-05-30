@@ -1,5 +1,6 @@
 package mechanics.modifier;
 
+import mechanics.BonusSource;
 import mechanics.modifier.numeric.Numeric;
 
 import com.google.common.base.Preconditions;
@@ -17,7 +18,7 @@ public abstract class Modifiable<T extends Enum<T>, N extends Number> {
     return collection.getTotal(type);
   }
   
-  public N get(T type, ModifierType modType) {
+  public N get(T type, BonusSource modType) {
     return collection.getTypeTotal(type, modType);
   }
   

@@ -3,25 +3,27 @@ package mechanics.modifier;
 import java.util.Map;
 import java.util.Set;
 
+import mechanics.BonusSource;
+
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableMap;
 
 public class Modifier<T extends Enum<T>, N extends Number> {
   
    private final ImmutableMap<T, N> modifiers;
-   private final ModifierType modType;
+   private final BonusSource modType;
    
-   private Modifier(ModifierType modType) {
+   private Modifier(BonusSource modType) {
      this.modType = modType;
      modifiers = ImmutableMap.of();
    }
    
-   private Modifier(ModifierType modType, Map<T, N> map) {
+   private Modifier(BonusSource modType, Map<T, N> map) {
      modifiers = ImmutableMap.copyOf(map);
      this.modType = modType;
    }
    
-   public ModifierType getModifierType() {
+   public BonusSource getModifierType() {
      return modType;
    }
    
@@ -57,11 +59,11 @@ public class Modifier<T extends Enum<T>, N extends Number> {
       return modifiers.containsKey(type) ? modifiers.get(type): null;
     }
     
-    public static <H extends Enum<H>, N extends Number> Modifier<H, N> of(ModifierType modType, H type, N value) {
+    public static <H extends Enum<H>, N extends Number> Modifier<H, N> of(BonusSource modType, H type, N value) {
       return new Modifier<H, N>(modType, ImmutableMap.of(type, value));
     }
     
-    public static <H extends Enum<H>, N extends Number> Modifier<H, N> none(ModifierType modType) {
+    public static <H extends Enum<H>, N extends Number> Modifier<H, N> none(BonusSource modType) {
       return new Modifier<H, N>(modType);
     }
   }

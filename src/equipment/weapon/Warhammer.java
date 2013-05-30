@@ -1,11 +1,11 @@
 package equipment.weapon;
 
 import mechanics.Damage;
+import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
 import mechanics.dice.Dice;
 import mechanics.dice.Die;
 import mechanics.modifier.Modifier;
-import mechanics.modifier.ModifierType;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -17,7 +17,7 @@ public class Warhammer extends Weapon {
 
   @Override
   public Modifier<BurdenType, Integer> getBurdenModifier() {
-    return Modifier.of(ModifierType.WEAPON, BurdenType.WEIGHT, 5);
+    return Modifier.of(BonusSource.WEAPON, BurdenType.WEIGHT, 5);
   }
 
   @Override

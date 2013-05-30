@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import mechanics.BonusSource;
 import mechanics.modifier.numeric.Numeric;
 
 import com.google.common.base.Preconditions;
@@ -12,14 +13,14 @@ import com.google.common.base.Preconditions;
 
 public class ModificationCollection<T extends Enum<T>, N extends Number> {
 
-  private Map<ModifierType, List<Modifier<T, N>>> modifications;
-  private Map<ModifierType, ModifierTotal<T, N>> typeTotals;
+  private Map<BonusSource, List<Modifier<T, N>>> modifications;
+  private Map<BonusSource, ModifierTotal<T, N>> typeTotals;
   private ModifierTotal<T, N> total;
   
   
   public ModificationCollection(Numeric<N> numeric) {
     modifications = new HashMap<>();
-    for(ModifierType type : ModifierType.values()) {
+    for(BonusSource type : BonusSource.values()) {
       modifications.put(type, new LinkedList<Modifier<T, N>>());
       typeTotals.put(type, new ModifierTotal<T, N>(numeric));
     }
@@ -43,7 +44,7 @@ public class ModificationCollection<T extends Enum<T>, N extends Number> {
     return total.get(type);
   }
   
-  public N getTypeTotal(T type, ModifierType modType) {
+  public N getTypeTotal(T type, BonusSource modType) {
     return typeTotals.get(modType).get(type);
   }
 
