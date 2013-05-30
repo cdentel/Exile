@@ -58,16 +58,8 @@ public abstract class Race {
     c.attributes().add(getAbilityScoreModifier());
     c.defenses().add(getDefenseModifier());
     c.getSkills().add(getSkillModifiers());
+    c.getSkills().addClassSkillChoices(getCreationClassSkillChoices());
+    c.getSkills().addBonusSkillChoices(getCreationBonusSkillChoices());
     c.languages().addAll(getLanguages(), BonusSource.RACE);
   }
-  
-  public void removeRaceBonuses(Creature c) {
-    c.vision().remove(getVision(), BonusSource.RACE);
-    c.burden().remove(Modifier.of(BonusSource.RACE, BurdenType.MOVEMENT, getSpeed()));
-    c.attributes().remove(getAbilityScoreModifier());
-    c.defenses().remove(getDefenseModifier());
-    c.getSkills().remove(getSkillModifiers());
-    c.languages().removeAll(getLanguages(), BonusSource.RACE);
-  }
-
 }

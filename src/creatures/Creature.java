@@ -1,15 +1,9 @@
 package creatures;
-import java.util.Set;
-
 import mechanics.EvaluatedDamage;
 import mechanics.ProficiencySet;
 import mechanics.defenses.Defenses;
 import mechanics.skills.Skills;
-import mechanics.skills.TrainedSkills;
 import attack.Attack;
-
-import com.google.common.collect.Sets;
-
 import creatures.clazz.Clazz;
 import creatures.components.Attributes;
 import creatures.components.Burden;

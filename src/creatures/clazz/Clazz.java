@@ -52,20 +52,8 @@ public abstract class Clazz {
     c.armorProficiencies().addAll(getArmorProficiencies(), BonusSource.CLAZZ);
     c.shieldProficiencies().addAll(getShieldProficiencies(), BonusSource.CLAZZ);
     c.weaponProficiencies().addAll(getWeaponProficiencies(), BonusSource.CLAZZ);
-    for(SkillType st : getStartingSkills()) {
-      c.getSkills().train(st);
-    }
-  }
-    
-  public void removeClazzBonuses(Creature c) {
-    c.defenses().remove(getDefenseModifier());
-    c.health().remove(Modifier.of(BonusSource.CLAZZ, HealthType.MAX_SURGES, getHealingSurges()));
-    c.health().remove(Modifier.of(BonusSource.CLAZZ, HealthType.MAX_HP, getBaseHitPoints()));
-    c.armorProficiencies().removeAll(getArmorProficiencies(), BonusSource.CLAZZ);
-    c.shieldProficiencies().removeAll(getShieldProficiencies(), BonusSource.CLAZZ);
-    c.weaponProficiencies().removeAll(getWeaponProficiencies(), BonusSource.CLAZZ);
-    for(SkillType st : getStartingSkills()) {
-      c.getSkills().untrain(st);
-    }
+    c.getSkills().setTrainableSkills(getTrainableSkills());
+    c.getSkills().setStartingSkills(getStartingSkills());
+    c.getSkills().addClassSkillChoices(getNumberOfSkillChoices());
   }
 }

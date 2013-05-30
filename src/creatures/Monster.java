@@ -1,6 +1,5 @@
 package creatures;
 
-import mechanics.skills.TrainedSkills;
 import creatures.clazz.Clazz;
 import creatures.race.Race;
 

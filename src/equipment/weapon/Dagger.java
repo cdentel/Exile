@@ -1,19 +1,16 @@
 package equipment.weapon;
 
 import static mechanics.dice.Die.d4;
-import mechanics.Damage;
 import mechanics.BonusSource;
+import mechanics.Damage;
 import mechanics.defenses.DefenseType;
 import mechanics.dice.Dice;
 import mechanics.modifier.Modifier;
 
 import com.google.common.collect.ImmutableSet;
 
-import creatures.Creature;
 import creatures.components.AttributeType;
 import creatures.components.BurdenType;
-
-import equipment.EquipmentType;
 
 public class Dagger extends Weapon {
 

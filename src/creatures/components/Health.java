@@ -1,10 +1,7 @@
 package creatures.components;
 
-import static creatures.components.AttributeType.CONSTITUTION;
-import mechanics.EvaluatedDamage;
 import mechanics.modifier.Modifiable;
 import mechanics.modifier.numeric.IntegerNumeric;
-import creatures.Creature;
 
 public class Health extends Modifiable<HealthType, Integer> {
   

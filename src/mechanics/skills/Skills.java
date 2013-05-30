@@ -1,15 +1,22 @@
 package mechanics.skills;
 
+import java.util.Set;
+
 import mechanics.BonusSource;
 import mechanics.modifier.Modifiable;
 import mechanics.modifier.Modifier;
 import mechanics.modifier.numeric.IntegerNumeric;
 
+import com.google.common.collect.Sets;
+
 public class Skills extends Modifiable<SkillType, Integer> {
+  
+  public Set<SkillType> trainableSkills = Sets.newTreeSet();
+  public int bonusSkillChoices = 0;
+  public int classSkillChoices = 0;
   
   public Skills() {
     super(IntegerNumeric.INSTANCE());
-    // TODO Auto-generated constructor stub
   }
 
   public boolean isTrainedIn(SkillType skill) {
@@ -17,11 +24,39 @@ public class Skills extends Modifiable<SkillType, Integer> {
   }
 
   public void train(SkillType st) {
-    add(Modifier.of(BonusSource.TRAINED, st, 5));
+    if(!trainableSkills.contains(st) && bonusSkillChoices > 0) {
+      bonusSkillChoices--;
+    } else if(trainableSkills.contains(st) && bonusSkillChoices > 0 || classSkillChoices > 0) {
+      if (classSkillChoices > 0) 
+        classSkillChoices--; 
+      else 
+        bonusSkillChoices--;
+    } else {
+      throw new IllegalArgumentException("This skill cannot be trained at this time");
+    }
+    addTrainedBonus(st);
+  }
+
+  public void addClassSkillChoices(int classSkillChoices) {
+    this.classSkillChoices += classSkillChoices;
+  }
+
+  public void setTrainableSkills(Set<SkillType> trainableSkills) {
+    this.trainableSkills = trainableSkills;
+  }
+
+  public void addBonusSkillChoices(int bonusSkillChoices) {
+    this.bonusSkillChoices += bonusSkillChoices;
+  }
+
+  public void setStartingSkills(Set<SkillType> startingSkills) {
+    for(SkillType st : startingSkills) {
+      addTrainedBonus(st);
+    }
   }
   
-  public void untrain(SkillType st) {
-    remove(Modifier.of(BonusSource.TRAINED, st, 5));
+  private void addTrainedBonus(SkillType skill) {
+    add(Modifier.of(BonusSource.TRAINED, skill, 5));
   }
 
 }

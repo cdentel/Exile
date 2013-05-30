@@ -1,8 +1,7 @@
-import mechanics.DamageType;
 import mechanics.BonusSource;
+import mechanics.DamageType;
 import mechanics.modifier.Modifier;
 import mechanics.skills.SkillType;
-import mechanics.skills.TrainedSkills;
 import powers.dragonborn.DragonBreathOption;
 import creatures.Creature;
 import creatures.Hero;
@@ -57,11 +56,6 @@ public class Driver {
   private static Hero getHero() {
     Race race = new Human(Language.ELVEN, AttributeType.STRENGTH);
     Clazz clazz = new Fighter();
-    TrainedSkills skills = TrainedSkills.getTrainedSkillBuilderFor(race, clazz)
-        .chooseClazzSkill(SkillType.ATHLETICS).chooseClazzSkill(SkillType.ENDURANCE)
-        .chooseClazzSkill(SkillType.HEAL).chooseClazzSkill(SkillType.INTIMIDATE)
-        .build();
-    
     Hero h =  new Hero(race, clazz);
     h.attributes().add(Modifier
         .of(BonusSource.BASE, AttributeType.CHARISMA, 10)
@@ -83,11 +77,6 @@ public class Driver {
     Race race = new Dragonborn(DragonBreathOption.withModifierAndDamageType(
         AttributeType.DEXTERITY, DamageType.POISON));
     Clazz clazz = new Fighter();
-    TrainedSkills skills = TrainedSkills.getTrainedSkillBuilderFor(race, clazz)
-      .chooseClazzSkill(SkillType.STREETWISE)
-      .chooseClazzSkill(SkillType.ATHLETICS)
-      .chooseClazzSkill(SkillType.INTIMIDATE)
-      .build();
     Monster g = new Monster(race, clazz);
     g.attributes().add(Modifier
         .of(BonusSource.BASE, AttributeType.CHARISMA, 8)
