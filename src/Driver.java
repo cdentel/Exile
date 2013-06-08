@@ -1,7 +1,7 @@
 import mechanics.BonusSource;
 import mechanics.DamageType;
+import mechanics.defenses.DefenseType;
 import mechanics.modifier.Modifier;
-import mechanics.skills.SkillType;
 import powers.dragonborn.DragonBreathOption;
 import creatures.Creature;
 import creatures.Hero;
@@ -22,6 +22,8 @@ import equipment.wearable.ArmorType;
 import equipment.wearable.Footwear;
 import equipment.wearable.Handwear;
 import equipment.wearable.Torso;
+import event.AttributeListener;
+import event.AttributeBroadcaster;
 
 
 public class Driver {
@@ -30,7 +32,20 @@ public class Driver {
    * @param args
    */
   public static void main(String[] args) {
-    Creature creature = getMonster();
+    //Creature creature = getMonster();
+    
+    AttributeBroadcaster mb = new AttributeBroadcaster();
+    mb.subscribe(new AttributeListener<Integer>(DefenseType.AC){
+
+      @Override
+      public void onBroadcast(Integer number) {
+        System.out.println(number);
+        
+      }
+     
+    });
+    
+    mb.broadcast(DefenseType.AC, 5);
     
     //CreatureViewer viewer = new CreatureViewer(creature);
     

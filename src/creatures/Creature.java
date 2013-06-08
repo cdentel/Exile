@@ -15,21 +15,24 @@ import equipment.Equipment;
 import equipment.shield.ShieldType;
 import equipment.weapon.WeaponType;
 import equipment.wearable.ArmorType;
+import event.AttributeBroadcaster;
 
 
 public abstract class Creature {
-    
+  
+  private final AttributeBroadcaster broadcaster = new AttributeBroadcaster();
+  
   protected int xp;
   
-  protected Attributes attributes = new Attributes();
+  protected Attributes attributes = new Attributes(broadcaster);
   
-  protected Health health = new Health();
+  protected Health health = new Health(broadcaster);
   
-  protected Skills skills = new Skills();
+  protected Skills skills = new Skills(broadcaster);
   
-  protected  Defenses defenses = new Defenses();
+  protected  Defenses defenses = new Defenses(broadcaster);
   
-  protected Burden burden = new Burden();
+  protected Burden burden = new Burden(broadcaster);
   
   protected ProficiencySet<ShieldType> shieldProficiencies = ProficiencySet.create();
   
@@ -47,8 +50,7 @@ public abstract class Creature {
   
   protected Equipment equipment;
 
-  public abstract String getName();
-  
+  public abstract String getName();  
   
   public Creature(Race race, Clazz clazz) {
     this.clazz = clazz;

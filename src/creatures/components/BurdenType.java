@@ -1,5 +1,7 @@
 package creatures.components;
 
-public enum BurdenType {
+import mechanics.Attribute;
+
+public enum BurdenType implements Attribute<Integer> {
   WEIGHT, MOVEMENT
 }

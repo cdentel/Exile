@@ -1,9 +1,15 @@
 package mechanics.skills;
 
-import static creatures.components.AttributeType.*;
+import static creatures.components.AttributeType.CHARISMA;
+import static creatures.components.AttributeType.CONSTITUTION;
+import static creatures.components.AttributeType.DEXTERITY;
+import static creatures.components.AttributeType.INTELLIGENCE;
+import static creatures.components.AttributeType.STRENGTH;
+import static creatures.components.AttributeType.WISDOM;
+import mechanics.Attribute;
 import creatures.components.AttributeType;
 
-public enum SkillType {
+public enum SkillType implements Attribute<Integer> {
   
   ACROBATICS(DEXTERITY),
   ARCANA(INTELLIGENCE),

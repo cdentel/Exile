@@ -5,9 +5,10 @@ import static creatures.components.AttributeType.CONSTITUTION;
 import static creatures.components.AttributeType.DEXTERITY;
 import static creatures.components.AttributeType.INTELLIGENCE;
 import static creatures.components.AttributeType.STRENGTH;
+import mechanics.Attribute;
 import creatures.components.AttributeType;
 
-public enum DefenseType {
+public enum DefenseType implements Attribute<Integer> {
   AC(DEXTERITY, INTELLIGENCE), 
   FORTITUDE(STRENGTH, CONSTITUTION), 
   REFLEX(DEXTERITY, INTELLIGENCE), 
@@ -38,5 +39,4 @@ public enum DefenseType {
       return name();
     }
   }
-  
 }

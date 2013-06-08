@@ -2,11 +2,12 @@ package mechanics.modifier;
 
 import java.util.Map;
 
+import mechanics.Attribute;
 import mechanics.modifier.numeric.Numeric;
 
 import com.google.common.collect.Maps;
 
-public class ModifierTotal<T extends Enum<T>, N extends Number> {
+public class ModifierTotal<T extends Attribute<N> & Comparable<T>, N extends Number> {
     
     private Map<T, N> totals;
     private Numeric<N> numeric;

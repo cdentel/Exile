@@ -1,6 +1,8 @@
 package creatures.components;
 
-public enum AttributeType {
+import mechanics.Attribute;
+
+public enum AttributeType implements Attribute<Integer> {
   STRENGTH, 
   CONSTITUTION, 
   DEXTERITY, 

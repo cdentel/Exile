@@ -9,14 +9,16 @@ import mechanics.modifier.numeric.IntegerNumeric;
 
 import com.google.common.collect.Sets;
 
+import event.AttributeBroadcaster;
+
 public class Skills extends Modifiable<SkillType, Integer> {
   
   public Set<SkillType> trainableSkills = Sets.newTreeSet();
   public int bonusSkillChoices = 0;
   public int classSkillChoices = 0;
   
-  public Skills() {
-    super(IntegerNumeric.INSTANCE());
+  public Skills(AttributeBroadcaster broadcaster) {
+    super(IntegerNumeric.INSTANCE(), broadcaster);
   }
 
   public boolean isTrainedIn(SkillType skill) {

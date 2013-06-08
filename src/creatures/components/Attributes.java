@@ -4,11 +4,13 @@ import mechanics.modifier.numeric.IntegerNumeric;
 
 import com.google.common.base.Preconditions;
 
+import event.AttributeBroadcaster;
+
 
 public class Attributes extends Modifiable<AttributeType, Integer> {
 
-  public Attributes() {
-    super(IntegerNumeric.INSTANCE());
+  public Attributes(AttributeBroadcaster broadcaster) {
+    super(IntegerNumeric.INSTANCE(), broadcaster);
   }
 
   public int getModifier(AttributeType attribute) {
