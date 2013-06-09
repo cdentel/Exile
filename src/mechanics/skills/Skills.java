@@ -19,6 +19,7 @@ public class Skills extends Modifiable<SkillType, Integer> {
   
   public Skills(AttributeBroadcaster broadcaster) {
     super(IntegerNumeric.INSTANCE(), broadcaster);
+    broadcaster.provide(SkillType.class, this);
   }
 
   public boolean isTrainedIn(SkillType skill) {

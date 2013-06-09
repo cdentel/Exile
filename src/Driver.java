@@ -1,6 +1,7 @@
 import mechanics.BonusSource;
 import mechanics.DamageType;
 import mechanics.defenses.DefenseType;
+import mechanics.defenses.Defenses;
 import mechanics.modifier.Modifier;
 import powers.dragonborn.DragonBreathOption;
 import creatures.Creature;
@@ -22,8 +23,8 @@ import equipment.wearable.ArmorType;
 import equipment.wearable.Footwear;
 import equipment.wearable.Handwear;
 import equipment.wearable.Torso;
-import event.AttributeListener;
 import event.AttributeBroadcaster;
+import event.AttributeListener;
 
 
 public class Driver {
@@ -46,6 +47,11 @@ public class Driver {
     });
     
     mb.broadcast(DefenseType.AC, 5);
+    
+    Defenses d = new Defenses(mb);
+    d.add(Modifier.of(BonusSource.ATTRIBUTE, DefenseType.FORTITUDE, 8));
+    
+    System.out.println(mb.poll(DefenseType.FORTITUDE));
     
     //CreatureViewer viewer = new CreatureViewer(creature);
     

@@ -7,13 +7,13 @@ import mechanics.modifier.numeric.Numeric;
 
 import com.google.common.collect.Maps;
 
-public class ModifierTotal<T extends Attribute<N> & Comparable<T>, N extends Number> {
+public class ModifierTotal<T extends Attribute<N>, N extends Number> {
     
     private Map<T, N> totals;
     private Numeric<N> numeric;
     
     public ModifierTotal(Numeric<N> numeric) {
-      totals = Maps.newTreeMap();
+      totals = Maps.newLinkedHashMap();
     }
     
     public N get(T type) {

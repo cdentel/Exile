@@ -11,6 +11,7 @@ public class Attributes extends Modifiable<AttributeType, Integer> {
 
   public Attributes(AttributeBroadcaster broadcaster) {
     super(IntegerNumeric.INSTANCE(), broadcaster);
+    broadcaster.provide(AttributeType.class, this);
   }
 
   public int getModifier(AttributeType attribute) {

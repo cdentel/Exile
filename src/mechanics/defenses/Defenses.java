@@ -8,7 +8,7 @@ public class Defenses extends Modifiable<DefenseType, Integer> {
 
   public Defenses(AttributeBroadcaster broadcaster) {
     super(IntegerNumeric.INSTANCE(), broadcaster);
-    // TODO Auto-generated constructor stub
+    broadcaster.provide(DefenseType.class, this);
   }
 
 }

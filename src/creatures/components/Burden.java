@@ -8,7 +8,7 @@ public class Burden extends Modifiable<BurdenType, Integer> {
 
   public Burden(AttributeBroadcaster broadcaster) {
     super(IntegerNumeric.INSTANCE(), broadcaster);
-    // TODO Auto-generated constructor stub
+    broadcaster.provide(BurdenType.class, this);
   }
 
 }

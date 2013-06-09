@@ -15,7 +15,7 @@ import com.google.common.base.Preconditions;
 import event.AttributeBroadcaster;
 
 
-public class ModificationCollection<T extends Attribute<N> & Comparable<T>, N extends Number> {
+public class ModificationCollection<T extends Attribute<N>, N extends Number> {
 
   private Map<BonusSource, List<Modifier<T, N>>> modifications;
   private Map<BonusSource, ModifierTotal<T, N>> typeTotals;
@@ -25,6 +25,7 @@ public class ModificationCollection<T extends Attribute<N> & Comparable<T>, N ex
   
   public ModificationCollection(Numeric<N> numeric, AttributeBroadcaster broadcaster) {
     modifications = new HashMap<>();
+    typeTotals = new HashMap<>();
     for(BonusSource type : BonusSource.values()) {
       modifications.put(type, new LinkedList<Modifier<T, N>>());
       typeTotals.put(type, new ModifierTotal<T, N>(numeric));

@@ -8,7 +8,7 @@ import com.google.common.base.Preconditions;
 
 import event.AttributeBroadcaster;
 
-public abstract class Modifiable<T extends Attribute<N> & Comparable<T>, N extends Number> {
+public abstract class Modifiable<T extends Attribute<N>, N extends Number> {
 
   protected ModificationCollection<T, N> collection ;
   

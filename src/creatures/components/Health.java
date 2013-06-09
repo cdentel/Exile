@@ -3,12 +3,12 @@ package creatures.components;
 import mechanics.modifier.Modifiable;
 import mechanics.modifier.numeric.IntegerNumeric;
 import event.AttributeBroadcaster;
-import event.AttributeBroadcaster;
 
 public class Health extends Modifiable<HealthType, Integer> {
   
   public Health(AttributeBroadcaster broadcaster) {
     super(IntegerNumeric.INSTANCE(), broadcaster);
+    broadcaster.provide(HealthType.class, this);
   }
   
   public int getMaxHp() {
