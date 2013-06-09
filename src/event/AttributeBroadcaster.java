@@ -20,6 +20,7 @@ public class AttributeBroadcaster {
    mapping.get(receiver.getAttribute()).add(receiver);
   }
   
+  @SuppressWarnings("unchecked")
   public <N extends Number> void broadcast(Attribute<N> attr, N value) {
     if(mapping.get(attr) != null) {
       for(AttributeListener<? extends Number> br : mapping.get(attr)) {
@@ -28,6 +29,7 @@ public class AttributeBroadcaster {
     }
   }
   
+  @SuppressWarnings("unchecked")
   public <N extends Number> N poll(Attribute<N> attribute) {
     return ((Modifiable<Attribute<N>, N>) map.get(attribute.getClass())).get(attribute);
   }
