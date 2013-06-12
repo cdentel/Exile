@@ -25,11 +25,11 @@ public abstract class Modifiable<T extends Attribute<N>, N extends Number> {
     return collection.getTypeTotal(type, modType);
   }
   
-  public void add(Modifier<T, N> modifier) {
+  public void add(ImmutableModifier<T, N> modifier) {
     collection.add(modifier);
   }
   
-  public void remove(Modifier<T, N> modifier) {
+  public void remove(ImmutableModifier<T, N> modifier) {
     collection.remove(modifier);
   }
 }

@@ -2,7 +2,7 @@ package equipment.wearable;
 
 import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import creatures.Creature;
 import creatures.components.BurdenType;
 import equipment.Equippable;
@@ -26,16 +26,16 @@ public abstract class Wearable implements Equippable {
     return c.armorProficiencies().contains(getArmorType());
   }
   
-  public Modifier<DefenseType, Integer> getDefenseModifier() {
-    return Modifier.of(
+  public ImmutableModifier<DefenseType, Integer> getDefenseModifier() {
+    return ImmutableModifier.of(
         BonusSource.ARMOR, 
         DefenseType.AC, 
         (int) (getArmorType().armorBonus * getMaterialArmorClassMultiplier()));
   }
   
   @Override
-  public Modifier<BurdenType, Integer> getBurdenModifier() {
-    return Modifier.of(
+  public ImmutableModifier<BurdenType, Integer> getBurdenModifier() {
+    return ImmutableModifier.of(
           BonusSource.ARMOR, 
           BurdenType.MOVEMENT,
           (int) (getArmorType().check * getMaterialMovementMultiplier()))

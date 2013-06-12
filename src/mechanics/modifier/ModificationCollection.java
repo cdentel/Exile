@@ -18,50 +18,53 @@ import event.AttributeBroadcaster;
 public class ModificationCollection<T extends Attribute<N>, N extends Number> {
 
   private Map<BonusSource, List<Modifier<T, N>>> modifications;
-  private Map<BonusSource, ModifierTotal<T, N>> typeTotals;
-  private ModifierTotal<T, N> total;
+
   private AttributeBroadcaster broadcaster;
+  
+  private Numeric<N> numeric;
   
   
   public ModificationCollection(Numeric<N> numeric, AttributeBroadcaster broadcaster) {
     modifications = new HashMap<>();
-    typeTotals = new HashMap<>();
+    this.numeric = numeric;
     for(BonusSource type : BonusSource.values()) {
       modifications.put(type, new LinkedList<Modifier<T, N>>());
-      typeTotals.put(type, new ModifierTotal<T, N>(numeric));
     }
-    total = new ModifierTotal<>(numeric);
     this.broadcaster = broadcaster;
   }
   
-  public void add(Modifier<T, N> modifier) {
+  public void add(ImmutableModifier<T, N> modifier) {
     modifications.get(modifier.getModifierType()).add(modifier);
-    typeTotals.get(modifier.getModifierType()).add(modifier);
-    total.add(modifier);
     broadcast(modifier.getModified());
   }
   
   private void broadcast(Set<T> attributes) {
-    for(T attribute : attributes) {
-      broadcaster.broadcast(attribute, total.get(attribute));
-    }
+    broadcaster.notify(attributes);
   }
   
-  public void remove(Modifier<T, N> modifier) {
+  public void remove(ImmutableModifier<T, N> modifier) {
     Preconditions.checkArgument(modifications.containsKey(modifier));
     modifications.get(modifier.getModifierType()).remove(modifier);
-    typeTotals.get(modifier.getModifierType()).subtract(modifier);
-    total.subtract(modifier);
     broadcast(modifier.getModified());
 
   }
   
   public N getTotal(T type) {
-    return total.get(type);
+    N sum = numeric.zero();
+    for(List<Modifier<T,N>> list : modifications.values()) {
+      for(Modifier<T,N> mod : list) {
+        sum = numeric.add(sum, mod.get(type));
+      }
+    }
+    return sum;
   }
   
   public N getTypeTotal(T type, BonusSource modType) {
-    return typeTotals.get(modType).get(type);
+    N sum = numeric.zero();
+    for(Modifier<T,N> mod : modifications.get(modType)) {
+      sum = numeric.add(sum, mod.get(type));
+    }
+    return sum;
   }
 
 }

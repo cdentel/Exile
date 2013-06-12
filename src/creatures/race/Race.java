@@ -2,7 +2,7 @@ package creatures.race;
 
 import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
@@ -24,14 +24,14 @@ public abstract class Race {
   
   public abstract int getSpeed();
   
-  public abstract Modifier<AttributeType, Integer> getAbilityScoreModifier();
+  public abstract ImmutableModifier<AttributeType, Integer> getAbilityScoreModifier();
   
-  public Modifier<DefenseType, Integer> getDefenseModifier() {
-    return Modifier.none(BonusSource.RACE);
+  public ImmutableModifier<DefenseType, Integer> getDefenseModifier() {
+    return ImmutableModifier.none(BonusSource.RACE);
   }
     
-  public Modifier<SkillType, Integer> getSkillModifiers() {
-    return Modifier.none(BonusSource.RACE);
+  public ImmutableModifier<SkillType, Integer> getSkillModifiers() {
+    return ImmutableModifier.none(BonusSource.RACE);
   }
   
   public int getCreationClassSkillChoices() {
@@ -54,7 +54,7 @@ public abstract class Race {
   
   public void applyRaceBonuses(Creature c) {
     c.vision().add(getVision(), BonusSource.RACE);
-    c.burden().add(Modifier.of(BonusSource.RACE, BurdenType.MOVEMENT, getSpeed()));
+    c.burden().add(ImmutableModifier.of(BonusSource.RACE, BurdenType.MOVEMENT, getSpeed()));
     c.attributes().add(getAbilityScoreModifier());
     c.defenses().add(getDefenseModifier());
     c.getSkills().add(getSkillModifiers());

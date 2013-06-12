@@ -1,9 +1,9 @@
 package equipment;
 
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import creatures.components.BurdenType;
 
 public interface Item {
 
-  public Modifier<BurdenType, Integer> getBurdenModifier();
+  public ImmutableModifier<BurdenType, Integer> getBurdenModifier();
 }

@@ -5,7 +5,7 @@ import mechanics.Damage;
 import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
 import mechanics.dice.Dice;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -16,8 +16,8 @@ import creatures.components.BurdenType;
 public class ShortSword extends Weapon {
 
   @Override
-  public Modifier<BurdenType, Integer> getBurdenModifier() {
-    return Modifier.of(BonusSource.WEAPON, BurdenType.WEIGHT, 2);
+  public ImmutableModifier<BurdenType, Integer> getBurdenModifier() {
+    return ImmutableModifier.of(BonusSource.WEAPON, BurdenType.WEIGHT, 2);
   }
 
   @Override

@@ -4,7 +4,7 @@ import java.util.Set;
 
 import mechanics.BonusSource;
 import mechanics.modifier.Modifiable;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import mechanics.modifier.numeric.IntegerNumeric;
 
 import com.google.common.collect.Sets;
@@ -59,7 +59,7 @@ public class Skills extends Modifiable<SkillType, Integer> {
   }
   
   private void addTrainedBonus(SkillType skill) {
-    add(Modifier.of(BonusSource.TRAINED, skill, 5));
+    add(ImmutableModifier.of(BonusSource.TRAINED, skill, 5));
   }
 
 }

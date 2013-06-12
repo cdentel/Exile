@@ -20,7 +20,7 @@ public class ModifierTotal<T extends Attribute<N>, N extends Number> {
       return totals.get(type);
     }
     
-    public void add(Modifier<T, N> modifier) {
+    public void add(ImmutableModifier<T, N> modifier) {
       for(T type: modifier.getModified()) {
         if(totals.containsKey(type)) {
           totals.put(type, numeric.add(totals.get(type), modifier.get(type)));
@@ -30,7 +30,7 @@ public class ModifierTotal<T extends Attribute<N>, N extends Number> {
       }
     }
 
-    public void subtract(Modifier<T, N> modifier) {
+    public void subtract(ImmutableModifier<T, N> modifier) {
       for(T type: modifier.getModified()) {
         if(totals.containsKey(type)) {
           totals.put(type, numeric.subtract(totals.get(type),  modifier.get(type)));

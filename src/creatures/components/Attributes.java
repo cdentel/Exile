@@ -16,6 +16,10 @@ public class Attributes extends Modifiable<AttributeType, Integer> {
 
   public int getModifier(AttributeType attribute) {
     Preconditions.checkNotNull(attribute);
-    return get(attribute) / 2 -5;
+    return getModifier(get(attribute));
+  }
+  
+  public static int getModifier(int base) {
+    return base / 2 -5;
   }
 }

@@ -2,7 +2,7 @@ import mechanics.BonusSource;
 import mechanics.DamageType;
 import mechanics.defenses.DefenseType;
 import mechanics.defenses.Defenses;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import powers.dragonborn.DragonBreathOption;
 import creatures.Creature;
 import creatures.Hero;
@@ -24,7 +24,7 @@ import equipment.wearable.Footwear;
 import equipment.wearable.Handwear;
 import equipment.wearable.Torso;
 import event.AttributeBroadcaster;
-import event.AttributeListener;
+import event.Notifier;
 
 
 public class Driver {
@@ -36,20 +36,16 @@ public class Driver {
     //Creature creature = getMonster();
     
     AttributeBroadcaster mb = new AttributeBroadcaster();
-    mb.subscribe(new AttributeListener<Integer>(DefenseType.AC){
-
-      @Override
-      public void onBroadcast(Integer number) {
-        System.out.println(number);
-        
+    mb.listen(DefenseType.AC, new Notifier(){
+      public void onNotify() {
+        System.out.println("AC Changed");
       }
-     
     });
     
-    mb.broadcast(DefenseType.AC, 5);
+    mb.notify(DefenseType.AC);
     
     Defenses d = new Defenses(mb);
-    d.add(Modifier.of(BonusSource.ATTRIBUTE, DefenseType.FORTITUDE, 8));
+    d.add(ImmutableModifier.of(BonusSource.ATTRIBUTE, DefenseType.FORTITUDE, 8));
     
     System.out.println(mb.poll(DefenseType.FORTITUDE));
     
@@ -78,7 +74,7 @@ public class Driver {
     Race race = new Human(Language.ELVEN, AttributeType.STRENGTH);
     Clazz clazz = new Fighter();
     Hero h =  new Hero(race, clazz);
-    h.attributes().add(Modifier
+    h.attributes().add(ImmutableModifier
         .of(BonusSource.BASE, AttributeType.CHARISMA, 10)
         .and(AttributeType.CONSTITUTION, 14)
         .and(AttributeType.DEXTERITY, 11)
@@ -99,7 +95,7 @@ public class Driver {
         AttributeType.DEXTERITY, DamageType.POISON));
     Clazz clazz = new Fighter();
     Monster g = new Monster(race, clazz);
-    g.attributes().add(Modifier
+    g.attributes().add(ImmutableModifier
         .of(BonusSource.BASE, AttributeType.CHARISMA, 8)
         .and(AttributeType.CONSTITUTION, 14)
         .and(AttributeType.DEXTERITY, 18)

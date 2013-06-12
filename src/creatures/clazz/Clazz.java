@@ -4,7 +4,7 @@ import java.util.Set;
 
 import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import mechanics.skills.SkillType;
 
 import com.google.common.collect.ImmutableSet;
@@ -19,7 +19,7 @@ public abstract class Clazz {
   
   public abstract ClazzType getClassType();
   
-  public abstract Modifier<DefenseType, Integer> getDefenseModifier();
+  public abstract ImmutableModifier<DefenseType, Integer> getDefenseModifier();
   
   public abstract int getHealingSurges();
   
@@ -47,8 +47,8 @@ public abstract class Clazz {
   
   public void applyClazzBonuses(Creature c) {
     c.defenses().add(getDefenseModifier());
-    c.health().add(Modifier.of(BonusSource.CLAZZ, HealthType.MAX_SURGES, getHealingSurges()));
-    c.health().add(Modifier.of(BonusSource.CLAZZ, HealthType.MAX_HP, getBaseHitPoints()));
+    c.health().add(ImmutableModifier.of(BonusSource.CLAZZ, HealthType.MAX_SURGES, getHealingSurges()));
+    c.health().add(ImmutableModifier.of(BonusSource.CLAZZ, HealthType.MAX_HP, getBaseHitPoints()));
     c.armorProficiencies().addAll(getArmorProficiencies(), BonusSource.CLAZZ);
     c.shieldProficiencies().addAll(getShieldProficiencies(), BonusSource.CLAZZ);
     c.weaponProficiencies().addAll(getWeaponProficiencies(), BonusSource.CLAZZ);

@@ -2,7 +2,7 @@ package creatures.race;
 
 import mechanics.BonusSource;
 import mechanics.defenses.DefenseType;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
@@ -16,13 +16,13 @@ import creatures.components.Vision;
 // Complete
 public class Human extends Race {
   
-  private Modifier<AttributeType, Integer> bonusAttribute;
+  private ImmutableModifier<AttributeType, Integer> bonusAttribute;
   private Language languageChoice;
   
   public Human(Language choice, AttributeType bonus) {
     Preconditions.checkArgument(!choice.equals(Language.COMMON));
     this.languageChoice = choice;
-    this.bonusAttribute = Modifier.of(BonusSource.RACE, bonus, 2);
+    this.bonusAttribute = ImmutableModifier.of(BonusSource.RACE, bonus, 2);
   }
 
   @Override
@@ -41,8 +41,8 @@ public class Human extends Race {
   }
 
   @Override
-  public Modifier<DefenseType, Integer> getDefenseModifier() {
-    return Modifier
+  public ImmutableModifier<DefenseType, Integer> getDefenseModifier() {
+    return ImmutableModifier
         .of(BonusSource.RACE, DefenseType.FORTITUDE, 1)
         .and(DefenseType.REFLEX, 1)
         .and(DefenseType.WILL, 1);
@@ -75,7 +75,7 @@ public class Human extends Race {
   }
 
   @Override
-  public Modifier<AttributeType, Integer> getAbilityScoreModifier() {
+  public ImmutableModifier<AttributeType, Integer> getAbilityScoreModifier() {
     return bonusAttribute;
   }
 }

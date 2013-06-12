@@ -1,7 +1,7 @@
 package creatures.race;
 
 import mechanics.BonusSource;
-import mechanics.modifier.Modifier;
+import mechanics.modifier.ImmutableModifier;
 import mechanics.skills.SkillType;
 import powers.dragonborn.DragonBreathOption;
 
@@ -46,8 +46,8 @@ public class Dragonborn extends Race {
   }
   
   @Override
-  public Modifier<AttributeType, Integer> getAbilityScoreModifier() {
-    return Modifier.of(BonusSource.RACE, AttributeType.STRENGTH, 2).and(AttributeType.CHARISMA, 2);
+  public ImmutableModifier<AttributeType, Integer> getAbilityScoreModifier() {
+    return ImmutableModifier.of(BonusSource.RACE, AttributeType.STRENGTH, 2).and(AttributeType.CHARISMA, 2);
   }
 
   @Override
@@ -56,8 +56,8 @@ public class Dragonborn extends Race {
   }
   
   @Override
-  public Modifier<SkillType, Integer> getSkillModifiers() {
-    return Modifier.of(BonusSource.RACE, SkillType.HISTORY, 2).and(SkillType.INTIMIDATE, 2);
+  public ImmutableModifier<SkillType, Integer> getSkillModifiers() {
+    return ImmutableModifier.of(BonusSource.RACE, SkillType.HISTORY, 2).and(SkillType.INTIMIDATE, 2);
   }
 
 }
